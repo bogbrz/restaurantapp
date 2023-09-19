@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "917748107234",
+    "project_id": "my-own-restaurant-app-project",
+    "storage_bucket": "my-own-restaurant-app-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917748107234:android:322e177fe0fcc17c98dbbb",
+        "android_client_info": {
+          "package_name": "com.boguszbrzoska.restaurantapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeHEepHnGTH1HxjW9MotLq2r0IWeOrqPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
