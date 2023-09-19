@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurantapp/LogInPage.dart';
 
@@ -23,7 +24,9 @@ class MyAccountPage extends StatelessWidget {
             height: 20,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
             child: const Text("Sign Out"),
           ),
         ],
