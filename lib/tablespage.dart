@@ -7,8 +7,13 @@ class TablesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("tables"),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+      ),
+      body: const Center(
         child: Text("tables"),
       ),
     );

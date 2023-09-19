@@ -12,6 +12,11 @@ class MyAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Account"),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
