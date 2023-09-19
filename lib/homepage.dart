@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:restaurantapp/myaccountpage.dart';
 import 'package:restaurantapp/tablespage.dart';
 
-class RootPage extends StatefulWidget {
-  const RootPage({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
   });
 
   @override
-  State<RootPage> createState() => _RootPageState();
+  State<HomePage> createState() => _RootPageState();
 }
 
 var currentIndex = 0;
 
-class _RootPageState extends State<RootPage> {
+class _RootPageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

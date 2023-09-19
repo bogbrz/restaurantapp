@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurantapp/LogInPage.dart';
 import 'package:restaurantapp/firebase_options.dart';
-import 'package:restaurantapp/rootpage.dart';
+import 'package:restaurantapp/homepage.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -22,6 +25,25 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const RootPage());
+        home: RootPage());
+  }
+}
+
+class RootPage extends StatelessWidget {
+  const RootPage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          final user = snapshot.data;
+          if (user == null) {
+            return LogInPage();
+          }
+          return HomePage();
+        });
   }
 }
