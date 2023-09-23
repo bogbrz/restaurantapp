@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
 
 class TablesPage extends StatelessWidget {
   TablesPage({
@@ -15,19 +17,17 @@ class TablesPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.orange,
       ),
-      body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('tables')
-              .orderBy('number', descending: false)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text("Something went wrong");
+      body: BlocProvider(
+        create: (context) => TablePageCubit()..start(),
+        child: BlocBuilder<TablePageCubit, TablePageState>(
+          builder: (context, state) {
+            if (state.errorMessage.isNotEmpty) {
+              return Text("Something went wrong ${state.errorMessage}");
             }
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (state.isLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-            final documents = snapshot.data!.docs;
+            final documents = state.documents;
 
             return ListView(
               children: [
@@ -60,13 +60,32 @@ class TablesPage extends StatelessWidget {
                       return direction == DismissDirection.endToStart;
                     },
                     onDismissed: (_) {
+                      context.read<TablePageCubit>().remove(document.id);
                       FirebaseFirestore.instance
                           .collection('tables')
                           .doc(document.id)
                           .delete();
                     },
                     child: Builder(builder: (context) {
-                      return Center(child: Tables(document: document));
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                color: Colors.orange,
+                                child: Center(
+                                  child: Text(
+                                    document['number'],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
                     }),
                   )
                 ],
@@ -80,9 +99,9 @@ class TablesPage extends StatelessWidget {
                       width: 75,
                       child: ElevatedButton(
                         onPressed: () {
-                          FirebaseFirestore.instance
-                              .collection('tables')
-                              .add({'number': tableNumberController.text});
+                          context
+                              .read<TablePageCubit>()
+                              .add(tableNumberController.text);
                         },
                         child: const Text('Add'),
                       ),
@@ -91,36 +110,15 @@ class TablesPage extends StatelessWidget {
                 ),
               ],
             );
-          }),
-    );
-  }
-}
 
-class Tables extends StatelessWidget {
-  const Tables({
-    super.key,
-    required this.document,
-  });
-
-  final QueryDocumentSnapshot<Object?> document;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Container(
-            height: 50,
-            width: 50,
-            color: Colors.orange,
-            child: Center(
-              child: Text(
-                document['number'],
-              ),
-            ),
-          ),
-        ],
+            return StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('tables')
+                    .orderBy('number', descending: false)
+                    .snapshots(),
+                builder: (context, snapshot) {});
+          },
+        ),
       ),
     );
   }
