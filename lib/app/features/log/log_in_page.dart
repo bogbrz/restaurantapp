@@ -50,7 +50,6 @@ class _LogInPageState extends State<LogInPage> {
               ),
               controller: passwordController,
             ),
-            Text(errorMessage),
             ElevatedButton(
               onPressed: () async {
                 if (isCreatingAccount) {

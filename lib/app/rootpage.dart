@@ -13,14 +13,17 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RootPageCubit()..start(),
-      child: BlocBuilder<RootPageCubit, RootPageState>(
-        builder: (context, state) {
-          final user = state.user;
-          if (user == null) {
-            return const LogInPage();
-          }
-          return const HomePage();
-        },
+      child: BlocListener<RootPageCubit, RootPageState>(
+        listener: (context, state) {},
+        child: BlocBuilder<RootPageCubit, RootPageState>(
+          builder: (context, state) {
+            final user = state.user;
+            if (user == null) {
+              return const LogInPage();
+            }
+            return const HomePage();
+          },
+        ),
       ),
     );
   }

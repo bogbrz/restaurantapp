@@ -44,6 +44,7 @@ class TablePageCubit extends Cubit<TablePageState> {
           errorMessage: error.toString(),
           isLoading: false));
     }
+    start();
   }
 
   Future<void> remove(String documentId) async {
