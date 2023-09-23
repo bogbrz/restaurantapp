@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
-import 'package:restaurantapp/homepage.dart';
+import 'package:restaurantapp/app/homepage.dart';
 
 class RootPage extends StatelessWidget {
   const RootPage({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurantapp/app/features/my_account_page/myaccountpage.dart';
-import 'package:restaurantapp/app/features/tables_page_content/tablespage.dart';
+import 'package:restaurantapp/app/features/tables_page_content/pages/tablespage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -19,7 +19,7 @@ class _RootPageState extends State<HomePage> {
     return Scaffold(
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return TablesPage();
+          return const TablesPage();
         } else {
           return MyAccountPage(onSave: () {
             setState(() {

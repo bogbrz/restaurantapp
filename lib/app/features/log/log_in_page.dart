@@ -28,7 +28,7 @@ class _LogInPageState extends State<LogInPage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
               decoration: InputDecoration(
@@ -49,6 +49,9 @@ class _LogInPageState extends State<LogInPage> {
                     borderRadius: BorderRadius.circular(10.0)),
               ),
               controller: passwordController,
+            ),
+            const SizedBox(
+              height: 20,
             ),
             ElevatedButton(
               onPressed: () async {

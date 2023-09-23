@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
+import 'package:restaurantapp/app/features/tables_page_content/pages/tables_screenpage.dart';
 
-class TablesPage extends StatelessWidget {
-  TablesPage({
+class TablesPage extends StatefulWidget {
+  const TablesPage({
     super.key,
   });
+
+  @override
+  State<TablesPage> createState() => _TablesPageState();
+}
+
+var tableNumber = 1;
+
+class _TablesPageState extends State<TablesPage> {
   final tableNumberController = TextEditingController();
 
   @override
@@ -75,15 +84,23 @@ class TablesPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Center(
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  color: Colors.orange,
-                                  child: Center(
-                                    child: Text(
-                                      document['number'],
+                                child: InkWell(
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    color: Colors.orange,
+                                    child: Center(
+                                      child: Text(
+                                        document['number'],
+                                      ),
                                     ),
                                   ),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                const TableScreenPage()));
+                                  },
                                 ),
                               ),
                             ],
