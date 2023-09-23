@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurantapp/features/Login/Pages/myaccountpage.dart';
-import 'package:restaurantapp/features/Table/tablespage.dart';
+import 'package:restaurantapp/myaccountpage.dart';
+import 'package:restaurantapp/tablespage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -21,13 +21,11 @@ class _RootPageState extends State<HomePage> {
         if (currentIndex == 0) {
           return const TablesPage();
         } else {
-          return MyAccountPage(
-            onSave: () {
-              setState(() {
-                currentIndex = 0;
-              });
-            },
-          );
+          return MyAccountPage(onSave: () {
+            setState(() {
+              currentIndex = 0;
+            });
+          });
         }
       }),
       bottomNavigationBar: BottomNavigationBar(
@@ -35,7 +33,6 @@ class _RootPageState extends State<HomePage> {
         onTap: (newIndex) {
           setState(() {
             currentIndex = newIndex;
-            print(newIndex);
           });
         },
         items: const [

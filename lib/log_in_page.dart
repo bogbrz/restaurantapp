@@ -1,16 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/cubit/rootpage_cubit.dart';
 
-
-
-class LogInPage extends StatefulWidget {
-   LogInPage({
-    super.key,
-  });
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
+
+class LogInPage extends StatefulWidget {
+  const LogInPage({
+    super.key,
+  });
+
   @override
   State<LogInPage> createState() => _LogInPageState();
 }
@@ -37,7 +35,7 @@ class _LogInPageState extends State<LogInPage> {
                     borderRadius: BorderRadius.circular(10.0)),
                 label: const Text("Email"),
               ),
-              controller: widget.emailController,
+              controller: emailController,
             ),
             const SizedBox(
               height: 20,
@@ -49,27 +47,45 @@ class _LogInPageState extends State<LogInPage> {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0)),
               ),
-              controller: widget.passwordController,
+              controller: passwordController,
             ),
             Text(errorMessage),
             ElevatedButton(
-              onPressed: () async {
-                if (isCreatingAccount) {
-                  //REGISTRATION
-                  context
-                      .read<RootpageCubit>()
-                      .createAccount(widget.emailController.text, widget.passwordController.text);
-                } else {
-                  context.read<RootpageCubit>().signIn(widget.emailController.text, widget.passwordController.text)
-                  //loging
-                }
-              },
+              onPressed: passwordController.text.isEmpty ||
+                      emailController.text.isEmpty
+                  ? null
+                  : () async {
+                      if (isCreatingAccount) {
+                        //REGISTRATION
+                        try {
+                          await FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text);
+                        } catch (error) {
+                          setState(() {
+                            errorMessage = error.toString();
+                          });
+                        }
+                      } else {
+                        //loging
+                        try {
+                          await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text);
+                        } catch (error) {
+                          setState(() {
+                            errorMessage = error.toString();
+                          });
+                        }
+                      }
+                    },
               child: Text(isCreatingAccount ? "Create Account " : "Log in"),
             ),
             if (isCreatingAccount == false) ...[
               TextButton(
                   onPressed: () {
-                    print(isCreatingAccount.toString());
                     setState(() {
                       isCreatingAccount = true;
                     });

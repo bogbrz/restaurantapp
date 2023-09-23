@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/cubit/rootpage_cubit.dart';
-import 'package:restaurantapp/features/Login/Pages/LogInPage.dart';
+import 'package:restaurantapp/log_in_page.dart';
 import 'package:restaurantapp/firebase_options.dart';
-import 'package:restaurantapp/features/Home/homepage.dart';
+import 'package:restaurantapp/homepage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,34 +36,14 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RootpageCubit(),
-      child: BlocBuilder<RootpageCubit, RootpageState>(
-        builder: (context, state) {
-          if (state.errorMessage.isNotEmpty) {
-            return Center(
-              child: Text(
-                state.errorMessage.toString(),
-              ),
-            );
-          }
-          if (state.isLoading) {
-            return const CircularProgressIndicator();
-          }
-          final user = state.user;
-
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          final user = snapshot.data;
           if (user == null) {
             return const LogInPage();
           }
           return const HomePage();
-
-          return StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                final user = snapshot.data;
-              });
-        },
-      ),
-    );
+        });
   }
 }
