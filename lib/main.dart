@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurantapp/log_in_page.dart';
 import 'package:restaurantapp/firebase_options.dart';
-import 'package:restaurantapp/homepage.dart';
+import 'package:restaurantapp/rootpage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,24 +24,5 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const RootPage());
-  }
-}
-
-class RootPage extends StatelessWidget {
-  const RootPage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          final user = snapshot.data;
-          if (user == null) {
-            return const LogInPage();
-          }
-          return const HomePage();
-        });
   }
 }

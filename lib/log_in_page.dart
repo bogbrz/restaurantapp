@@ -51,36 +51,34 @@ class _LogInPageState extends State<LogInPage> {
             ),
             Text(errorMessage),
             ElevatedButton(
-              onPressed: passwordController.text.isEmpty ||
-                      emailController.text.isEmpty
-                  ? null
-                  : () async {
-                      if (isCreatingAccount) {
-                        //REGISTRATION
-                        try {
-                          await FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                                  email: emailController.text,
-                                  password: passwordController.text);
-                        } catch (error) {
-                          setState(() {
-                            errorMessage = error.toString();
-                          });
-                        }
-                      } else {
-                        //loging
-                        try {
-                          await FirebaseAuth.instance
-                              .signInWithEmailAndPassword(
-                                  email: emailController.text,
-                                  password: passwordController.text);
-                        } catch (error) {
-                          setState(() {
-                            errorMessage = error.toString();
-                          });
-                        }
-                      }
-                    },
+              onPressed: () async {
+                if (isCreatingAccount) {
+                  //REGISTRATION
+                  try {
+                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text);
+                  } catch (error) {
+                    setState(() {
+                      errorMessage = error.toString();
+                    });
+                  }
+                } else {
+                  //loging
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text);
+                  } catch (error) {
+                    setState(() {
+                      errorMessage = error.toString();
+                    });
+                  }
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+              ),
               child: Text(isCreatingAccount ? "Create Account " : "Log in"),
             ),
             if (isCreatingAccount == false) ...[
