@@ -25,7 +25,7 @@ class TablesPage extends StatelessWidget {
               return const Text("Something went wrong");
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             final documents = snapshot.data!.docs;
 

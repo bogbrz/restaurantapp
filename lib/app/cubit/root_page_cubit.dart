@@ -51,7 +51,9 @@ class RootPageCubit extends Cubit<RootPageState> {
     }
   }
 
-  Future<void> signOut() async {}
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
   @override
   Future<void> close() {
