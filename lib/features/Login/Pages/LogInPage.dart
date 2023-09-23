@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/cubit/rootpage_cubit.dart';
 
-final emailController = TextEditingController();
-final passwordController = TextEditingController();
+
 
 class LogInPage extends StatefulWidget {
-  LogInPage({
+   LogInPage({
     super.key,
   });
-
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
   @override
   State<LogInPage> createState() => _LogInPageState();
 }
@@ -35,7 +37,7 @@ class _LogInPageState extends State<LogInPage> {
                     borderRadius: BorderRadius.circular(10.0)),
                 label: const Text("Email"),
               ),
-              controller: emailController,
+              controller: widget.emailController,
             ),
             const SizedBox(
               height: 20,
@@ -47,33 +49,19 @@ class _LogInPageState extends State<LogInPage> {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0)),
               ),
-              controller: passwordController,
+              controller: widget.passwordController,
             ),
             Text(errorMessage),
             ElevatedButton(
               onPressed: () async {
                 if (isCreatingAccount) {
                   //REGISTRATION
-                  try {
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    setState(() {
-                      errorMessage = error.toString();
-                    });
-                  }
+                  context
+                      .read<RootpageCubit>()
+                      .createAccount(widget.emailController.text, widget.passwordController.text);
                 } else {
+                  context.read<RootpageCubit>().signIn(widget.emailController.text, widget.passwordController.text)
                   //loging
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    setState(() {
-                      errorMessage = error.toString();
-                    });
-                  }
                 }
               },
               child: Text(isCreatingAccount ? "Create Account " : "Log in"),
