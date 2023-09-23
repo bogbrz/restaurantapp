@@ -14,8 +14,8 @@ class TablePageCubit extends Cubit<TablePageState> {
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit(const TablePageState(
-        documents: [], errorMessage: ' ', isLoading: true));
+    emit(
+        const TablePageState(documents: [], errorMessage: '', isLoading: true));
 
     _streamSubscription = FirebaseFirestore.instance
         .collection('tables')

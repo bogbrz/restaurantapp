@@ -12,8 +12,6 @@ class TablesPage extends StatefulWidget {
   State<TablesPage> createState() => _TablesPageState();
 }
 
-var tableNumber = 1;
-
 class _TablesPageState extends State<TablesPage> {
   final tableNumberController = TextEditingController();
 
@@ -31,8 +29,8 @@ class _TablesPageState extends State<TablesPage> {
           listener: (context, state) {
             if (state.errorMessage.isNotEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage),
+                const SnackBar(
+                  content: Text('Something went wrong'),
                   backgroundColor: Colors.red,
                 ),
               );
