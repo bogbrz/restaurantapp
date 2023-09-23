@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurantapp/log_in_page.dart';
+import 'package:restaurantapp/app/features/log/log_in_page.dart';
 
 class MyAccountPage extends StatelessWidget {
   const MyAccountPage({

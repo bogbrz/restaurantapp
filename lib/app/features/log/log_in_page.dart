@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -53,27 +54,14 @@ class _LogInPageState extends State<LogInPage> {
             ElevatedButton(
               onPressed: () async {
                 if (isCreatingAccount) {
+                  context.read<RootPageCubit>().createAccount(
+                      emailController.text, passwordController.text);
                   //REGISTRATION
-                  try {
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    setState(() {
-                      errorMessage = error.toString();
-                    });
-                  }
                 } else {
+                  context
+                      .read<RootPageCubit>()
+                      .sigIn(emailController.text, passwordController.text);
                   //loging
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    setState(() {
-                      errorMessage = error.toString();
-                    });
-                  }
                 }
               },
               style: ElevatedButton.styleFrom(
