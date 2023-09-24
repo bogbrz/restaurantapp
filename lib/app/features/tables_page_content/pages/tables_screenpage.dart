@@ -4,8 +4,10 @@ import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_
 
 class TableScreenPage extends StatelessWidget {
   const TableScreenPage({
+    required this.tableModel,
     super.key,
   });
+  final String tableModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,10 @@ class TableScreenPage extends StatelessWidget {
         create: (context) => TablePageCubit()..start(),
         child: BlocBuilder<TablePageCubit, TablePageState>(
           builder: (context, state) {
-            final documents = state.documents;
-            return ListView(
-              children: [
-                for (final document in documents) ...[
+            final tableModels = state.tables;
+            if (tableModels.isNotEmpty) {
+              return ListView(
+                children: [
                   Column(
                     children: [
                       Center(
@@ -33,9 +35,7 @@ class TableScreenPage extends StatelessWidget {
                                       width: 50,
                                       color: Colors.orange,
                                       child: Center(
-                                        child: Text(
-                                          document['number'],
-                                        ),
+                                        child: Text(tableModel),
                                       ),
                                     ),
                                   ),
@@ -47,9 +47,13 @@ class TableScreenPage extends StatelessWidget {
                       ),
                     ],
                   )
-                ]
-              ],
-            );
+                ],
+              );
+            } else {
+              return const Center(
+                child: Text('something went wrong'),
+              );
+            }
           },
         ),
       ),

@@ -41,7 +41,7 @@ class _TablesPageState extends State<TablesPage> {
           },
           child: BlocBuilder<TablePageCubit, TablePageState>(
             builder: (context, state) {
-              final documents = state.documents;
+              final tableModels = state.tables;
 
               return ListView(
                 children: [
@@ -58,9 +58,9 @@ class _TablesPageState extends State<TablesPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  for (final document in documents) ...[
+                  for (final tableModel in tableModels) ...[
                     Dismissible(
-                      key: ValueKey(document.id),
+                      key: ValueKey(tableModel.id),
                       background: const DecoratedBox(
                           decoration: BoxDecoration(color: Colors.red),
                           child: Align(
@@ -74,7 +74,7 @@ class _TablesPageState extends State<TablesPage> {
                         return direction == DismissDirection.endToStart;
                       },
                       onDismissed: (_) {
-                        context.read<TablePageCubit>().remove(document.id);
+                        context.read<TablePageCubit>().remove(tableModel.id);
                       },
                       child: Builder(builder: (context) {
                         return Padding(
@@ -89,15 +89,16 @@ class _TablesPageState extends State<TablesPage> {
                                     color: Colors.orange,
                                     child: Center(
                                       child: Text(
-                                        document['number'],
+                                        tableModel.number,
                                       ),
                                     ),
                                   ),
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                const TableScreenPage()));
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                            builder: (_) => TableScreenPage(
+                                                  tableModel: tableModel.number,
+                                                )));
                                   },
                                 ),
                               ),

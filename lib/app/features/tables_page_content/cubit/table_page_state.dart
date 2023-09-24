@@ -4,9 +4,9 @@ part of 'table_page_cubit.dart';
 class TablePageState {
   final bool isLoading;
   final String errorMessage;
-  final List<QueryDocumentSnapshot<Object?>> documents;
+  final List<TableModel> tables;
   const TablePageState({
-    required this.documents,
+    required this.tables,
     required this.errorMessage,
     required this.isLoading,
   });

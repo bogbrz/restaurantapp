@@ -3,31 +3,34 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+import 'package:restaurantapp/models/tablemodel.dart';
 
 part 'table_page_state.dart';
 
 class TablePageCubit extends Cubit<TablePageState> {
   TablePageCubit()
       : super(const TablePageState(
-            isLoading: false, errorMessage: '', documents: []));
+            isLoading: false, errorMessage: '', tables: []));
 
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit(
-        const TablePageState(documents: [], errorMessage: '', isLoading: true));
+    emit(const TablePageState(tables: [], errorMessage: '', isLoading: true));
 
     _streamSubscription = FirebaseFirestore.instance
         .collection('tables')
         .orderBy("number", descending: false)
         .snapshots()
-        .listen((data) {
+        .listen((tables) {
+      final tableModels = tables.docs.map((doc) {
+        return TableModel(id: doc.id, number: doc['number']);
+      }).toList();
       emit(TablePageState(
-          documents: data.docs, errorMessage: '', isLoading: false));
+          tables: tableModels, errorMessage: '', isLoading: false));
     })
       ..onError((error) {
         emit(TablePageState(
-            documents: const [],
+            tables: const [],
             errorMessage: error.toString(),
             isLoading: false));
       });
@@ -40,9 +43,7 @@ class TablePageCubit extends Cubit<TablePageState> {
           .add({'number': tableNumber});
     } catch (error) {
       emit(TablePageState(
-          documents: const [],
-          errorMessage: error.toString(),
-          isLoading: false));
+          tables: const [], errorMessage: error.toString(), isLoading: false));
     }
     start();
   }
@@ -52,9 +53,7 @@ class TablePageCubit extends Cubit<TablePageState> {
       FirebaseFirestore.instance.collection('tables').doc(documentId).delete();
     } catch (error) {
       emit(TablePageState(
-          documents: const [],
-          errorMessage: error.toString(),
-          isLoading: false));
+          tables: const [], errorMessage: error.toString(), isLoading: false));
     }
     start();
   }
