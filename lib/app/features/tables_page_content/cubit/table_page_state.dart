@@ -5,6 +5,7 @@ class TablePageState {
   final bool isLoading;
   final String errorMessage;
   final List<TableModel> tables;
+
   const TablePageState({
     required this.tables,
     required this.errorMessage,

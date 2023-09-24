@@ -22,6 +22,7 @@ class TablePageCubit extends Cubit<TablePageState> {
         .orderBy("number", descending: false)
         .snapshots()
         .listen((tables) {
+      //KONWERTUJEMY DANE Z BAZY NA Table model .map((DOC) {} )  doc oznacza dokumenty z bazy danych a w {co ma zwrócić}
       final tableModels = tables.docs.map((doc) {
         return TableModel(id: doc.id, number: doc['number']);
       }).toList();
