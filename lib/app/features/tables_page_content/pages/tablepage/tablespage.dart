@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
-import 'package:restaurantapp/app/features/tables_page_content/pages/tables_screenpage.dart';
+import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/tables_screenpage.dart';
 
 class TablesPage extends StatefulWidget {
   const TablesPage({
