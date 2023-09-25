@@ -37,8 +37,18 @@ class TablecontentCubit extends Cubit<TablecontentState> {
             errorMessage: "error fetching data",
             isLoading: false,
             tablePageModels: []));
-        print("errpr :$error");
       });
+  }
+
+  Future<void> remove(String documentId) async {
+    try {
+      FirebaseFirestore.instance.collection('drinks').doc(documentId).delete();
+    } catch (error) {
+      emit(TablecontentState(
+          errorMessage: error.toString(),
+          isLoading: false,
+          tablePageModels: const []));
+    }
   }
 
   @override

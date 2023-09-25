@@ -38,62 +38,129 @@ class _TableScreenPageState extends State<TableScreenPage> {
 
             return ListView(
               children: [
-                for (final tablePageModel in tablePageModels) ...[
-                  Dismissible(
-                    key: ValueKey(tablePageModel.id),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Column(children: [
-                            Row(
-                              children: [
-                                Container(
-                                  decoration:
-                                      const BoxDecoration(color: Colors.orange),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 50,
-                                        width: 100,
-                                        color: Colors.orange,
-                                        alignment: Alignment.center,
-                                        child: Text(tablePageModel.name),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Container(
-                                    color: Colors.red,
-                                    height: 50,
-                                    width: 50,
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      "+",
-                                      style: TextStyle(fontSize: 30),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Container(
-                                    color: Colors.red,
-                                    height: 50,
-                                    width: 50,
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      "-",
-                                      style: TextStyle(fontSize: 30),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ]),
-                        ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            border: Border.all(color: Colors.black, width: 5)),
+                        height: 40,
+                        width: 100,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Drinks",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
                       ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            border: Border.all(color: Colors.black, width: 5)),
+                        height: 40,
+                        width: 116,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Operands",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            border: Border.all(color: Colors.black, width: 5)),
+                        height: 40,
+                        width: 60,
+                        alignment: Alignment.center,
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            "Total",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                for (final tablePageModel in tablePageModels) ...[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(children: [
+                          Row(
+                            children: [
+                              Container(
+                                decoration:
+                                    const BoxDecoration(color: Colors.orange),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: 100,
+                                      color: Colors.orange,
+                                      alignment: Alignment.center,
+                                      child: Text(tablePageModel.name),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Container(
+                                  color: Colors.red,
+                                  height: 50,
+                                  width: 50,
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    "+",
+                                    style: TextStyle(fontSize: 30),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Container(
+                                  color: Colors.red,
+                                  height: 50,
+                                  width: 50,
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    "-",
+                                    style: TextStyle(fontSize: 30),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Container(
+                                  color: Colors.green,
+                                  height: 50,
+                                  width: 60,
+                                  alignment: Alignment.center,
+                                  child: const Text(
+                                    "",
+                                    style: TextStyle(fontSize: 30),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ]),
+                      ],
                     ),
                   ),
                 ]
