@@ -1,33 +1,27 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurantapp/models/tablemodel.dart';
+import 'package:restaurantapp/repositories/table_repository.dart';
 
 part 'table_page_state.dart';
 
 class TablePageCubit extends Cubit<TablePageState> {
-  TablePageCubit()
+  TablePageCubit(this._tableRepository)
       : super(const TablePageState(
             isLoading: false, errorMessage: '', tables: []));
 
+  final TableRepository _tableRepository;
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(const TablePageState(tables: [], errorMessage: '', isLoading: true));
 
-    _streamSubscription = FirebaseFirestore.instance
-        .collection('tables')
-        .orderBy("number", descending: false)
-        .snapshots()
-        .listen((tables) {
+    _streamSubscription = _tableRepository.getTablesStream().listen((tables) {
       //KONWERTUJEMY DANE Z BAZY NA Table model .map((DOC) {} )  doc oznacza dokumenty z bazy danych a w {co ma zwrócić}
-      final tableModels = tables.docs.map((doc) {
-        return TableModel(id: doc.id, number: doc['number']);
-      }).toList();
-      emit(TablePageState(
-          tables: tableModels, errorMessage: '', isLoading: false));
+
+      emit(TablePageState(tables: tables, errorMessage: '', isLoading: false));
     })
       ..onError((error) {
         emit(TablePageState(
@@ -39,9 +33,7 @@ class TablePageCubit extends Cubit<TablePageState> {
 
   Future<void> add(String tableNumber) async {
     try {
-      FirebaseFirestore.instance
-          .collection('tables')
-          .add({'number': tableNumber});
+      await _tableRepository.add(tableNumber: tableNumber);
     } catch (error) {
       emit(TablePageState(
           tables: const [], errorMessage: error.toString(), isLoading: false));
@@ -51,7 +43,7 @@ class TablePageCubit extends Cubit<TablePageState> {
 
   Future<void> remove(String documentId) async {
     try {
-      FirebaseFirestore.instance.collection('tables').doc(documentId).delete();
+      await _tableRepository.remove(id: documentId);
     } catch (error) {
       emit(TablePageState(
           tables: const [], errorMessage: error.toString(), isLoading: false));

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/tables_screenpage.dart';
+import 'package:restaurantapp/repositories/table_repository.dart';
 
 class TablesPage extends StatefulWidget {
   const TablesPage({
@@ -24,7 +25,7 @@ class _TablesPageState extends State<TablesPage> {
         backgroundColor: Colors.orange,
       ),
       body: BlocProvider(
-        create: (context) => TablePageCubit()..start(),
+        create: (context) => TablePageCubit(TableRepository())..start(),
         child: BlocListener<TablePageCubit, TablePageState>(
           listener: (context, state) {
             if (state.errorMessage.isNotEmpty) {
