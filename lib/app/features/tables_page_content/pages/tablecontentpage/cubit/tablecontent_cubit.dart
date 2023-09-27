@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurantapp/models/tablepagemodel.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
