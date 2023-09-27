@@ -37,4 +37,8 @@ class TableRepository {
       }).toList();
     });
   }
+
+  Future<void> removeDrink({required String id}) {
+    return FirebaseFirestore.instance.collection('drinks').doc(id).delete();
+  }
 }

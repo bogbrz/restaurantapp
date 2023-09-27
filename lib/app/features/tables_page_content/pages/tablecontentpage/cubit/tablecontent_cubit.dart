@@ -39,7 +39,7 @@ class TablecontentCubit extends Cubit<TablecontentState> {
 
   Future<void> remove(String documentId) async {
     try {
-      FirebaseFirestore.instance.collection('drinks').doc(documentId).delete();
+      await _tableRepository.removeDrink(id: documentId);
     } catch (error) {
       emit(TablecontentState(
           errorMessage: error.toString(),
