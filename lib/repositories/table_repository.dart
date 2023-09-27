@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:restaurantapp/models/tablemodel.dart';
+import 'package:restaurantapp/models/tablepagemodel.dart';
 
 class TableRepository {
   Stream<List<TableModel>> getTablesStream() {
@@ -24,5 +25,16 @@ class TableRepository {
         'number': tableNumber,
       },
     );
+  }
+
+  Stream<List<TablePageModel>> getTableModelStream() {
+    return FirebaseFirestore.instance
+        .collection('drinks')
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        return TablePageModel(name: doc['name'], id: doc.id);
+      }).toList();
+    });
   }
 }

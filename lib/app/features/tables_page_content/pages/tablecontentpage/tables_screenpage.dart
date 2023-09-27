@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
+import 'package:restaurantapp/repositories/table_repository.dart';
 
 class TableScreenPage extends StatefulWidget {
   const TableScreenPage({
@@ -25,7 +26,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
         ),
       ),
       body: BlocProvider(
-        create: (context) => TablecontentCubit()..start(),
+        create: (context) => TablecontentCubit(TableRepository())..start(),
         child: BlocBuilder<TablecontentCubit, TablecontentState>(
           builder: (context, state) {
             if (state.isLoading) {

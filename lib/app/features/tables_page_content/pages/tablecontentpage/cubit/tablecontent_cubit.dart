@@ -4,11 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurantapp/models/tablepagemodel.dart';
+import 'package:restaurantapp/repositories/table_repository.dart';
 
 part 'tablecontent_state.dart';
 
 class TablecontentCubit extends Cubit<TablecontentState> {
-  TablecontentCubit()
+  TablecontentCubit(this._tableRepository)
       : super(
           const TablecontentState(
             isLoading: false,
@@ -16,28 +17,24 @@ class TablecontentCubit extends Cubit<TablecontentState> {
             errorMessage: '',
           ),
         );
+  final TableRepository _tableRepository;
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(const TablecontentState(
         errorMessage: '', isLoading: false, tablePageModels: []));
 
-    _streamSubscription = FirebaseFirestore.instance
-        .collection('drinks')
-        .snapshots()
-        .listen((drinks) {
-      final tableModels = drinks.docs.map((doc) {
-        return TablePageModel(name: doc['name'].toString(), id: doc.id);
-      }).toList();
+    _streamSubscription =
+        _tableRepository.getTableModelStream().listen((drinks) {
       emit(TablecontentState(
-          errorMessage: '', isLoading: false, tablePageModels: tableModels));
+          errorMessage: '', isLoading: false, tablePageModels: drinks));
     })
-      ..onError((error) {
-        emit(const TablecontentState(
-            errorMessage: "error fetching data",
-            isLoading: false,
-            tablePageModels: []));
-      });
+          ..onError((error) {
+            emit(const TablecontentState(
+                errorMessage: "error fetching data",
+                isLoading: false,
+                tablePageModels: []));
+          });
   }
 
   Future<void> remove(String documentId) async {
