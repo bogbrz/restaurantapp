@@ -14,6 +14,8 @@ class TableScreenPage extends StatefulWidget {
   State<TableScreenPage> createState() => _TableScreenPageState();
 }
 
+var currentValue = 0;
+
 class _TableScreenPageState extends State<TableScreenPage> {
   @override
   Widget build(BuildContext context) {
@@ -121,27 +123,43 @@ class _TableScreenPageState extends State<TableScreenPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                  color: Colors.red,
-                                  height: 50,
-                                  width: 50,
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "+",
-                                    style: TextStyle(fontSize: 30),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentValue++;
+                                    });
+
+                                    print(currentValue.toString());
+                                  },
+                                  child: Container(
+                                    color: Colors.red,
+                                    height: 50,
+                                    width: 50,
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      "+",
+                                      style: TextStyle(fontSize: 30),
+                                    ),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                  color: Colors.red,
-                                  height: 50,
-                                  width: 50,
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    "-",
-                                    style: TextStyle(fontSize: 30),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentValue = currentValue - 1;
+                                    });
+                                  },
+                                  child: Container(
+                                    color: Colors.red,
+                                    height: 50,
+                                    width: 50,
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      "-",
+                                      style: TextStyle(fontSize: 30),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -152,9 +170,9 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                   height: 50,
                                   width: 60,
                                   alignment: Alignment.center,
-                                  child: const Text(
-                                    "",
-                                    style: TextStyle(fontSize: 30),
+                                  child: Text(
+                                    currentValue.toString(),
+                                    style: const TextStyle(fontSize: 30),
                                   ),
                                 ),
                               ),
