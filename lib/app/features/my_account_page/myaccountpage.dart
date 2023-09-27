@@ -23,7 +23,7 @@ class MyAccountPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'You are sign as ${emailController.text}',
+            'You are signed as ${emailController.text}',
             style: const TextStyle(fontSize: 30),
           ),
           const SizedBox(
