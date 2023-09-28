@@ -49,13 +49,47 @@ class _TablesPageState extends State<TablesPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                        decoration: const InputDecoration(
-                            label: Text(
-                              "Table number",
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                              decoration: const InputDecoration(
+                                  label: Text(
+                                    "Table number",
+                                  ),
+                                  border: OutlineInputBorder()),
+                              controller: tableNumberController),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            context
+                                .read<TablePageCubit>()
+                                .add(tableNumberController.text);
+
+                            tableNumberController.clear();
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Colors.lightGreen,
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 60,
+                            width: 60,
+                            child: const Text(
+                              '+',
+                              style: TextStyle(fontSize: 40),
+                              textAlign: TextAlign.center,
                             ),
-                            border: OutlineInputBorder()),
-                        controller: tableNumberController),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -86,8 +120,8 @@ class _TablesPageState extends State<TablesPage> {
                               Center(
                                 child: InkWell(
                                   child: Container(
-                                    height: 50,
-                                    width: 50,
+                                    height: 100,
+                                    width: 100,
                                     color: Colors.orange,
                                     child: Center(
                                       child: Text(
@@ -112,22 +146,6 @@ class _TablesPageState extends State<TablesPage> {
                   ],
                   const SizedBox(
                     height: 20,
-                  ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 75,
-                        width: 75,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context
-                                .read<TablePageCubit>()
-                                .add(tableNumberController.text);
-                          },
-                          child: const Text('Add'),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               );
