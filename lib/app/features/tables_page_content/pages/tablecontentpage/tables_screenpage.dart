@@ -183,7 +183,13 @@ class _TableScreenPageState extends State<TableScreenPage> {
                       ],
                     ),
                   ),
-                ]
+                ],
+                Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {}, child: const Text("Order")),
+                  ],
+                )
               ],
             );
           },
