@@ -21,6 +21,11 @@ class _RootPageState extends State<HomePage> {
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
           return const TablesPage();
+        }
+        if (currentIndex == 1) {
+          return const Scaffold(
+            body: Center(child: Text("recipt")),
+          );
         } else {
           return MyAccountPage(onSave: () {
             setState(() {
@@ -40,6 +45,10 @@ class _RootPageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Tables",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: "Recipt",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
