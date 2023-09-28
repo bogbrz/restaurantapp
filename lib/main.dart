@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:restaurantapp/app/app.dart';
 import 'package:restaurantapp/firebase_options.dart';
+//a
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

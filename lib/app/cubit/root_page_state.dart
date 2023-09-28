@@ -1,5 +1,6 @@
 part of 'root_page_cubit.dart';
 
+//a
 @immutable
 class RootPageState {
   final User? user;

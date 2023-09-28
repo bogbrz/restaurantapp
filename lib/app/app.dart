@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurantapp/app/rootpage.dart';
+//a
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
