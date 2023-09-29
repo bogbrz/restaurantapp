@@ -358,13 +358,10 @@ class _TableScreenPageState extends State<TableScreenPage> {
                 Center(
                     child: InkWell(
                   onTap: () {
-                    FirebaseFirestore.instance.collection('orders').add({
-                      'Rum': v1,
-                      'Tequilla': v2,
-                      'Aperol': v3,
-                      'Whiskey': v4,
-                      'tablenumber': widget.tableModel,
-                    });
+                    context
+                        .read<TablecontentCubit>()
+                        .add(widget.tableModel, v1, v2, v3, v4);
+
                     setState(() {
                       v1 = 0;
                       v2 = 0;

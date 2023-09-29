@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurantapp/app/features/my_account_page/myaccountpage.dart';
+import 'package:restaurantapp/app/features/reciptpage/reciptpage.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablepage/tablespage.dart';
 //a
 
@@ -23,9 +24,7 @@ class _RootPageState extends State<HomePage> {
           return const TablesPage();
         }
         if (currentIndex == 1) {
-          return const Scaffold(
-            body: Center(child: Text("recipt")),
-          );
+          return const ReciptPage();
         } else {
           return MyAccountPage(onSave: () {
             setState(() {
