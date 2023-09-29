@@ -15,6 +15,7 @@ class ReciptPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Recipts'),
+        centerTitle: true,
         backgroundColor: Colors.orange,
       ),
       body: BlocProvider(
@@ -48,9 +49,11 @@ class ReciptPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (_) => const ReciptTablePage())),
+                          onTap: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => ReciptTablePage(
+                                        tableModel: tableModel.number,
+                                      ))),
                           child: Container(
                             height: 50,
                             width: 50,
