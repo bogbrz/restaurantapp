@@ -15,9 +15,12 @@ class TableScreenPage extends StatefulWidget {
   State<TableScreenPage> createState() => _TableScreenPageState();
 }
 
-var currentValue = 0;
-
 class _TableScreenPageState extends State<TableScreenPage> {
+  var counter = 0;
+  var v1 = 0;
+  var v2 = 0;
+  var v3 = 0;
+  var v4 = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,10 @@ class _TableScreenPageState extends State<TableScreenPage> {
             if (state.errorMessage.isNotEmpty) {
               return const Text("something went wrong");
             }
+
             final tablePageModels = state.tablePageModels;
+
+            print('counter is$counter');
 
             return ListView(
               children: [
@@ -98,15 +104,15 @@ class _TableScreenPageState extends State<TableScreenPage> {
                     ],
                   ),
                 ),
-                for (final tablePageModel in tablePageModels) ...[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
                       children: [
-                        Column(children: [
-                          Row(
-                            children: [
+                        for (final tablePageModel in tablePageModels) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(children: [
                               Container(
                                 decoration:
                                     const BoxDecoration(color: Colors.orange),
@@ -122,74 +128,260 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      currentValue++;
-                                    });
-
-                                    print(currentValue.toString());
-                                  },
-                                  child: Container(
-                                    color: Colors.red,
-                                    height: 50,
-                                    width: 50,
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      "+",
-                                      style: TextStyle(fontSize: 30),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      currentValue = currentValue - 1;
-                                    });
-                                  },
-                                  child: Container(
-                                    color: Colors.red,
-                                    height: 50,
-                                    width: 50,
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      "-",
-                                      style: TextStyle(fontSize: 30),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                  color: Colors.green,
-                                  height: 50,
-                                  width: 60,
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    currentValue.toString(),
-                                    style: const TextStyle(fontSize: 30),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ]),
+                            ]),
+                          ),
+                        ],
                       ],
                     ),
-                  ),
-                ],
-                Column(
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {}, child: const Text("Order")),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Column(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v1++;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '+',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v2++;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '+',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v3++;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '+',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v4++;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '+',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Column(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v1 == 0 ? v1 = 0 : v1 = v1 - 1;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '-',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v2 == 0 ? v2 = 0 : v2 = v2 - 1;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '-',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v3 == 0 ? v3 = 0 : v3 = v3 - 1;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '-',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        v4 == 0 ? v4 = 0 : v4 = v4 - 1;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Colors.red,
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        '-',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                      height: 50,
+                                      width: 60,
+                                      color: Colors.green,
+                                      alignment: Alignment.center,
+                                      child: Text(v1.toString())),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Container(
+                                      height: 50,
+                                      width: 60,
+                                      color: Colors.green,
+                                      alignment: Alignment.center,
+                                      child: Text(v2.toString())),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Container(
+                                      height: 50,
+                                      width: 60,
+                                      color: Colors.green,
+                                      alignment: Alignment.center,
+                                      child: Text(v3.toString())),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Container(
+                                      height: 50,
+                                      width: 60,
+                                      color: Colors.green,
+                                      alignment: Alignment.center,
+                                      child: Text(v4.toString())),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Center(
+                    child: InkWell(
+                  onTap: () {
+                    context
+                        .read<TablecontentCubit>()
+                        .add(widget.tableModel, v1, v2, v3, v4);
+
+                    setState(() {
+                      v1 = 0;
+                      v2 = 0;
+                      v3 = 0;
+                      v4 = 0;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black, width: 4),
+                      color: Colors.orange,
+                    ),
+                    width: 150,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Order",
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ),
+                )),
               ],
             );
           },

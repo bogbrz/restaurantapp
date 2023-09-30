@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurantapp/models/tablepagemodel.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
+
 //a
 
 part 'tablecontent_state.dart';
@@ -35,6 +36,18 @@ class TablecontentCubit extends Cubit<TablecontentState> {
                 isLoading: false,
                 tablePageModels: []));
           });
+  }
+
+  Future<void> add(String tableNumber, int v1, v2, v3, v4) async {
+    try {
+      await _tableRepository.add2(
+          tableNumber: tableNumber, v1: v1, v2: v2, v3: v3, v4: v4);
+    } catch (error) {
+      emit(TablecontentState(
+          errorMessage: error.toString(),
+          isLoading: false,
+          tablePageModels: const []));
+    }
   }
 
   Future<void> remove(String documentId) async {

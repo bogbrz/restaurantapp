@@ -26,6 +26,7 @@ class MyAccountPage extends StatelessWidget {
           Text(
             'You are signed as ${emailController.text}',
             style: const TextStyle(fontSize: 30),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 20,
