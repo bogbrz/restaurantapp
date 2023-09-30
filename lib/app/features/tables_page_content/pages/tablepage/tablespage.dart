@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
-import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/tables_screenpage.dart';
+import 'package:restaurantapp/app/tablehomepage.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 //a
 
@@ -132,7 +132,7 @@ class _TablesPageState extends State<TablesPage> {
                                   onTap: () {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
-                                            builder: (_) => TableScreenPage(
+                                            builder: (_) => TableHomePage(
                                                   tableModel: tableModel.number,
                                                 )));
                                   },
