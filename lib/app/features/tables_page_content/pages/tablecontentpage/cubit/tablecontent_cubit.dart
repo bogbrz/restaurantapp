@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 import 'package:restaurantapp/models/tablepagemodel.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -41,20 +40,13 @@ class TablecontentCubit extends Cubit<TablecontentState> {
 
   Future<void> add(String tableNumber, int v1, v2, v3, v4) async {
     try {
-      await FirebaseFirestore.instance.collection('orders').add(
-        {
-          'Rum': v1,
-          'Tequilla': v2,
-          'Aperol': v3,
-          'Whiskey': v4,
-          'tablenumber': tableNumber,
-        },
-      );
+      await _tableRepository.add2(
+          tableNumber: tableNumber, v1: v1, v2: v2, v3: v3, v4: v4);
     } catch (error) {
       emit(TablecontentState(
           errorMessage: error.toString(),
           isLoading: false,
-          tablePageModels: []));
+          tablePageModels: const []));
     }
   }
 

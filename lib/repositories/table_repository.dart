@@ -61,14 +61,16 @@ class TableRepository {
         .collection('orders')
         .snapshots()
         .map((querySnapshot) {
-      return querySnapshot.docs.map((doc) {
-        return ReciptModel(
-            v1: doc['Rum'],
-            v2: doc['Tequilla'],
-            v3: doc['Aperol'],
-            v4: doc['Whiskey'],
-            number: doc['tablenumber']);
-      }).toList();
+      return querySnapshot.docs.map(
+        (doc) {
+          return ReciptModel(
+              v1: doc['Rum'],
+              v2: doc['Tequilla'],
+              v3: doc['Aperol'],
+              v4: doc['Whiskey'],
+              number: doc['tablenumber']);
+        },
+      ).toList();
     });
   }
 

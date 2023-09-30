@@ -23,6 +23,7 @@ class ReciptPage extends StatelessWidget {
         child: BlocBuilder<TablePageCubit, TablePageState>(
           builder: (context, state) {
             final tableModels = state.tables;
+
             return ListView(
               children: [
                 Column(

@@ -22,18 +22,30 @@ class ReciptTablePage extends StatelessWidget {
           child: BlocBuilder<ReciptPageCubit, ReciptPageState>(
             builder: (context, state) {
               final recipts = state.recipts;
-              return ListView(
-                children: [
-                  for (final recipt in recipts) ...[
-                    Center(
-                      child: Container(
+              return ListView(children: [
+                for (final recipt in recipts) ...[
+                  Column(
+                    children: [
+                      Container(
                         color: Colors.orange,
-                        child: Text(recipt.number),
+                        child: Text(recipt.v1.toString()),
                       ),
-                    )
-                  ]
-                ],
-              );
+                      Container(
+                        color: Colors.orange,
+                        child: Text(recipt.v2.toString()),
+                      ),
+                      Container(
+                        color: Colors.orange,
+                        child: Text(recipt.v3.toString()),
+                      ),
+                      Container(
+                        color: Colors.orange,
+                        child: Text(recipt.v4.toString()),
+                      ),
+                    ],
+                  ),
+                ]
+              ]);
             },
           ),
         ));
