@@ -21,6 +21,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
   var v2 = 0;
   var v3 = 0;
   var v4 = 0;
+  var currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

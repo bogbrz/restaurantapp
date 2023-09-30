@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/app/features/reciptpage/cubit/recipt_page_cubit.dart';
+
+import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 
 class ReciptTablePage extends StatelessWidget {
