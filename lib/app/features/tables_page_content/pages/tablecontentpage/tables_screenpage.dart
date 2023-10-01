@@ -68,14 +68,14 @@ class _TableScreenPageState extends State<TableScreenPage> {
                         ),
                       ),
                       const SizedBox(
-                        width: 8,
+                        width: 16,
                       ),
                       Container(
                         decoration: BoxDecoration(
                             color: Colors.orange,
                             border: Border.all(color: Colors.black, width: 5)),
                         height: 40,
-                        width: 116,
+                        width: 120,
                         alignment: Alignment.center,
                         child: const Text(
                           "Operands",
@@ -84,7 +84,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                         ),
                       ),
                       const SizedBox(
-                        width: 8,
+                        width: 16,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -115,8 +115,11 @@ class _TableScreenPageState extends State<TableScreenPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(children: [
                               Container(
-                                decoration:
-                                    const BoxDecoration(color: Colors.orange),
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.black, width: 2),
+                                  color: Colors.orange,
+                                ),
                                 child: Column(
                                   children: [
                                     Container(
@@ -148,16 +151,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v1++;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '+',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandAddButton(),
                                   ),
                                   const SizedBox(
                                     height: 16,
@@ -168,16 +162,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v2++;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '+',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandAddButton(),
                                   ),
                                   const SizedBox(
                                     height: 16,
@@ -188,16 +173,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v3++;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '+',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandAddButton(),
                                   ),
                                   const SizedBox(
                                     height: 16,
@@ -208,16 +184,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v4++;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '+',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandAddButton(),
                                   ),
                                 ],
                               ),
@@ -232,16 +199,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v1 == 0 ? v1 = 0 : v1 = v1 - 1;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '-',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandMinusButton(),
                                   ),
                                   const SizedBox(
                                     height: 16,
@@ -252,16 +210,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v2 == 0 ? v2 = 0 : v2 = v2 - 1;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '-',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandMinusButton(),
                                   ),
                                   const SizedBox(
                                     height: 16,
@@ -272,16 +221,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v3 == 0 ? v3 = 0 : v3 = v3 - 1;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '-',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandMinusButton(),
                                   ),
                                   const SizedBox(
                                     height: 16,
@@ -292,16 +232,7 @@ class _TableScreenPageState extends State<TableScreenPage> {
                                         v4 == 0 ? v4 = 0 : v4 = v4 - 1;
                                       });
                                     },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Colors.red,
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '-',
-                                        style: TextStyle(fontSize: 40),
-                                      ),
-                                    ),
+                                    child: const OperandMinusButton(),
                                   ),
                                 ],
                               ),
@@ -311,36 +242,48 @@ class _TableScreenPageState extends State<TableScreenPage> {
                               Column(
                                 children: [
                                   Container(
-                                      height: 50,
-                                      width: 60,
-                                      color: Colors.green,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      height: 54,
+                                      width: 54,
                                       alignment: Alignment.center,
                                       child: Text(v1.toString())),
                                   const SizedBox(
                                     height: 16,
                                   ),
                                   Container(
-                                      height: 50,
-                                      width: 60,
-                                      color: Colors.green,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      height: 54,
+                                      width: 54,
                                       alignment: Alignment.center,
                                       child: Text(v2.toString())),
                                   const SizedBox(
                                     height: 16,
                                   ),
                                   Container(
-                                      height: 50,
-                                      width: 60,
-                                      color: Colors.green,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      height: 54,
+                                      width: 54,
                                       alignment: Alignment.center,
                                       child: Text(v3.toString())),
                                   const SizedBox(
                                     height: 16,
                                   ),
                                   Container(
-                                      height: 50,
-                                      width: 60,
-                                      color: Colors.green,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      height: 54,
+                                      width: 54,
                                       alignment: Alignment.center,
                                       child: Text(v4.toString())),
                                 ],
@@ -387,6 +330,54 @@ class _TableScreenPageState extends State<TableScreenPage> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class OperandMinusButton extends StatelessWidget {
+  const OperandMinusButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.red,
+        border: Border.all(color: Colors.black, width: 2),
+      ),
+      height: 54,
+      width: 54,
+      alignment: Alignment.center,
+      child: const Text(
+        '-',
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 35),
+      ),
+    );
+  }
+}
+
+class OperandAddButton extends StatelessWidget {
+  const OperandAddButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.red,
+        border: Border.all(color: Colors.black, width: 2),
+      ),
+      height: 54,
+      width: 54,
+      alignment: Alignment.center,
+      child: const Text(
+        '+',
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 35),
       ),
     );
   }
