@@ -33,125 +33,122 @@ class ReciptTablePage extends StatelessWidget {
               final recipts = state.recipts;
 
               return ListView(children: [
-                for (final recipt in recipts) ...[
-                  if (recipt.number == tableModel)
-                    Row(
+                Row(children: [
+                  BlocBuilder<TablecontentCubit, TablecontentState>(
+                      builder: (context, state) {
+                    if (state.tablePageModels.isEmpty) {
+                      return const Center(
+                        child: Text('no data avalibe'),
+                      );
+                    }
+                    if (state.isLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (state.errorMessage.isNotEmpty) {
+                      return const Text("something went wrong");
+                    }
+                    final tablePageModels = state.tablePageModels;
+                    return Column(
                       children: [
-                        BlocBuilder<TablecontentCubit, TablecontentState>(
-                            builder: (context, state) {
-                          if (state.tablePageModels.isEmpty) {
-                            return const Center(
-                              child: Text('no data avalibe'),
-                            );
-                          }
-                          if (state.isLoading) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                          if (state.errorMessage.isNotEmpty) {
-                            return const Text("something went wrong");
-                          }
-                          final tablePageModels = state.tablePageModels;
-                          return Column(
-                            children: [
-                              for (final tablePageModel in tablePageModels) ...[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(children: [
-                                    Column(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.black, width: 2),
-                                            color: Colors.orange,
-                                          ),
-                                          height: 50,
-                                          width: 100,
-                                          alignment: Alignment.center,
-                                          child: Text(tablePageModel.name),
-                                        ),
-                                      ],
+                        for (final tablePageModel in tablePageModels) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black, width: 2),
+                                      color: Colors.orange,
                                     ),
-                                  ]),
-                                ),
-                              ],
-                            ],
-                          );
-                        }),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
+                                    height: 50,
+                                    width: 100,
+                                    alignment: Alignment.center,
+                                    child: Text(tablePageModel.name),
                                   ),
-                                  color: Colors.orange,
-                                ),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(recipt.v1.toString()),
+                                ],
                               ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
-                                  ),
-                                  color: Colors.orange,
-                                ),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(recipt.v2.toString()),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
-                                  ),
-                                  color: Colors.orange,
-                                ),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(recipt.v3.toString()),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
-                                  ),
-                                  color: Colors.orange,
-                                ),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  recipt.v4.toString(),
-                                ),
-                              ),
-                            ],
+                            ]),
                           ),
-                        ),
+                        ],
                       ],
-                    ),
-                ]
+                    );
+                  }),
+                  for (final recipt in recipts) ...[
+                    if (recipt.number == tableModel)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                color: Colors.orange,
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(recipt.v1.toString()),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                color: Colors.orange,
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(recipt.v2.toString()),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                color: Colors.orange,
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(recipt.v3.toString()),
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                color: Colors.orange,
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(
+                                recipt.v4.toString(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ])
               ]);
             },
           ),
