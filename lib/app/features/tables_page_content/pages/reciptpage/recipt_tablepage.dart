@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 
@@ -25,26 +24,31 @@ class ReciptTablePage extends StatelessWidget {
               final recipts = state.recipts;
               return ListView(children: [
                 for (final recipt in recipts) ...[
-                  Column(
-                    children: [
-                      Container(
-                        color: Colors.orange,
-                        child: Text(recipt.v1.toString()),
-                      ),
-                      Container(
-                        color: Colors.orange,
-                        child: Text(recipt.v2.toString()),
-                      ),
-                      Container(
-                        color: Colors.orange,
-                        child: Text(recipt.v3.toString()),
-                      ),
-                      Container(
-                        color: Colors.orange,
-                        child: Text(recipt.v4.toString()),
-                      ),
-                    ],
-                  ),
+                  if (recipt.number == tableModel)
+                    Column(
+                      children: [
+                        Container(
+                          color: Colors.orange,
+                          child: Text(recipt.v1.toString()),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          child: Text(recipt.v2.toString()),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          child: Text(recipt.v3.toString()),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          child: Text(recipt.v4.toString()),
+                        ),
+                        Container(
+                          color: Colors.orange,
+                          child: Text(recipt.number.toString()),
+                        ),
+                      ],
+                    ),
                 ]
               ]);
             },

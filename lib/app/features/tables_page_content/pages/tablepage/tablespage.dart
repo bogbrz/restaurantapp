@@ -74,6 +74,8 @@ class _TablesPageState extends State<TablesPage> {
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 4),
                                 color: Colors.lightGreen,
                                 borderRadius: BorderRadius.circular(10)),
                             height: 60,
@@ -120,9 +122,13 @@ class _TablesPageState extends State<TablesPage> {
                               Center(
                                 child: InkWell(
                                   child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            color: Colors.black, width: 4)),
                                     height: 100,
                                     width: 100,
-                                    color: Colors.orange,
                                     child: Center(
                                       child: Text(
                                         tableModel.number,
