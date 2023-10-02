@@ -4,7 +4,7 @@ import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 
-class ReciptTablePage extends StatelessWidget {
+class ReciptTablePage extends StatefulWidget {
   const ReciptTablePage({
     required this.tableModel,
     super.key,
@@ -12,10 +12,20 @@ class ReciptTablePage extends StatelessWidget {
   final String tableModel;
 
   @override
+  State<ReciptTablePage> createState() => _ReciptTablePageState();
+}
+
+class _ReciptTablePageState extends State<ReciptTablePage> {
+  var totalV1 = 0;
+  var totalV2 = 0;
+  var totalV3 = 0;
+  var totalV4 = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("table number $tableModel"),
+          title: Text("table number ${widget.tableModel}"),
           backgroundColor: Colors.orange,
         ),
         body: MultiBlocProvider(
@@ -76,7 +86,7 @@ class ReciptTablePage extends StatelessWidget {
                     );
                   }),
                   for (final recipt in recipts) ...[
-                    if (recipt.number == tableModel)
+                    if (recipt.number == widget.tableModel)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -92,7 +102,7 @@ class ReciptTablePage extends StatelessWidget {
                               height: 50,
                               width: 50,
                               alignment: Alignment.center,
-                              child: Text(recipt.v1.toString()),
+                              child: Text((totalV1 += recipt.v1).toString()),
                             ),
                             const SizedBox(
                               height: 16,
@@ -108,7 +118,7 @@ class ReciptTablePage extends StatelessWidget {
                               height: 50,
                               width: 50,
                               alignment: Alignment.center,
-                              child: Text(recipt.v2.toString()),
+                              child: Text((totalV2 += recipt.v2).toString()),
                             ),
                             const SizedBox(
                               height: 16,
@@ -124,7 +134,7 @@ class ReciptTablePage extends StatelessWidget {
                               height: 50,
                               width: 50,
                               alignment: Alignment.center,
-                              child: Text(recipt.v3.toString()),
+                              child: Text((totalV3 += recipt.v3).toString()),
                             ),
                             const SizedBox(
                               height: 16,
@@ -140,9 +150,7 @@ class ReciptTablePage extends StatelessWidget {
                               height: 50,
                               width: 50,
                               alignment: Alignment.center,
-                              child: Text(
-                                recipt.v4.toString(),
-                              ),
+                              child: Text((totalV4 += recipt.v4).toString()),
                             ),
                           ],
                         ),
