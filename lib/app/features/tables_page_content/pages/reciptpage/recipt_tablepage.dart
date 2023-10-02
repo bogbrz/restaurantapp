@@ -22,6 +22,11 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
   var totalV4 = 0;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -41,6 +46,14 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
           child: BlocBuilder<ReciptPageCubit, ReciptPageState>(
             builder: (context, state) {
               final recipts = state.recipts;
+              for (final recipt in recipts) {
+                if (recipt.number == widget.tableModel && recipts.isNotEmpty) {
+                  totalV1 = totalV1 += recipt.v1;
+                  totalV2 += recipt.v2;
+                  totalV3 += recipt.v3;
+                  totalV4 += recipt.v4;
+                }
+              }
 
               return ListView(children: [
                 Row(children: [
@@ -85,78 +98,75 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                       ],
                     );
                   }),
-                  for (final recipt in recipts) ...[
-                    if (recipt.number == widget.tableModel)
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
-                                color: Colors.orange,
-                              ),
-                              height: 50,
-                              width: 50,
-                              alignment: Alignment.center,
-                              child: Text((totalV1 += recipt.v1).toString()),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
                             ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
-                                color: Colors.orange,
-                              ),
-                              height: 50,
-                              width: 50,
-                              alignment: Alignment.center,
-                              child: Text((totalV2 += recipt.v2).toString()),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
-                                color: Colors.orange,
-                              ),
-                              height: 50,
-                              width: 50,
-                              alignment: Alignment.center,
-                              child: Text((totalV3 += recipt.v3).toString()),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
-                                color: Colors.orange,
-                              ),
-                              height: 50,
-                              width: 50,
-                              alignment: Alignment.center,
-                              child: Text((totalV4 += recipt.v4).toString()),
-                            ),
-                          ],
+                            color: Colors.orange,
+                          ),
+                          height: 50,
+                          width: 50,
+                          alignment: Alignment.center,
+                          child: Text(totalV1.toString()),
                         ),
-                      ),
-                  ],
-                ])
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            color: Colors.orange,
+                          ),
+                          height: 50,
+                          width: 50,
+                          alignment: Alignment.center,
+                          child: Text(totalV2.toString()),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            color: Colors.orange,
+                          ),
+                          height: 50,
+                          width: 50,
+                          alignment: Alignment.center,
+                          child: Text(totalV3.toString()),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            color: Colors.orange,
+                          ),
+                          height: 50,
+                          width: 50,
+                          alignment: Alignment.center,
+                          child: Text(totalV4.toString()),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
               ]);
             },
           ),
