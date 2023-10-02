@@ -20,6 +20,17 @@ class TableRepository {
     return FirebaseFirestore.instance.collection('tables').doc(id).delete();
   }
 
+  Future<ReciptModel> get({required String number}) async {
+    final doc =
+        await FirebaseFirestore.instance.collection('orders').doc(number).get();
+    return ReciptModel(
+        v1: doc['Rum'],
+        v2: doc['Tequilla'],
+        v3: doc['Aperol'],
+        v4: doc['Whiskey'],
+        number: doc['tablenumber']);
+  }
+
   Future<void> add2(
       {required String tableNumber,
       required int v1,
