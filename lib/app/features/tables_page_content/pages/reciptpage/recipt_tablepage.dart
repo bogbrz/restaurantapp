@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/pricemodel_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -41,6 +42,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
             BlocProvider(
               create: (context) =>
                   TablecontentCubit(TableRepository())..start(),
+            ),
+            BlocProvider(
+              create: (context) => PricemodelCubit(TableRepository())..start(),
             ),
           ],
           child: BlocBuilder<ReciptPageCubit, ReciptPageState>(
@@ -166,6 +170,68 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                       ],
                     ),
                   ),
+                  BlocBuilder<PricemodelCubit, PricemodelState>(
+                    builder: (context, state) {
+                      final prices = state.pricies;
+                      return Column(
+                        children: [
+                          for (final price in prices) ...[
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(
+                                        color: Colors.black, width: 2)),
+                                height: 50,
+                                width: 50,
+                                alignment: Alignment.center,
+                                child: Text(price.price1.toString())),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(
+                                        color: Colors.black, width: 2)),
+                                height: 50,
+                                width: 50,
+                                alignment: Alignment.center,
+                                child: Text(price.price2.toString())),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(
+                                        color: Colors.black, width: 2)),
+                                height: 50,
+                                width: 50,
+                                alignment: Alignment.center,
+                                child: Text(price.price3.toString())),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(
+                                        color: Colors.black, width: 2)),
+                                height: 50,
+                                width: 50,
+                                alignment: Alignment.center,
+                                child: Text(price.price4.toString())),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                          ]
+                        ],
+                      );
+                    },
+                  )
                 ]),
               ]);
             },
