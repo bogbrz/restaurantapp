@@ -60,7 +60,106 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
               }
 
               return ListView(children: [
-                Row(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 5,
+                          ),
+                        ),
+                        height: 40,
+                        width: 100,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "Drinks",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 5,
+                          ),
+                        ),
+                        height: 45,
+                        width: 45,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "x",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 5,
+                          ),
+                        ),
+                        height: 50,
+                        width: 65,
+                        alignment: Alignment.center,
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            "Price",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 5,
+                          ),
+                        ),
+                        height: 50,
+                        width: 65,
+                        alignment: Alignment.center,
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            "Total",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   BlocBuilder<TablecontentCubit, TablecontentState>(
                       builder: (context, state) {
                     if (state.tablePageModels.isEmpty) {
@@ -69,7 +168,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                       );
                     }
                     if (state.isLoading) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
                     }
                     if (state.errorMessage.isNotEmpty) {
                       return const Text("something went wrong");
@@ -80,28 +181,29 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         for (final tablePageModel in tablePageModels) ...[
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.black, width: 2),
-                                      color: Colors.orange,
-                                    ),
-                                    height: 50,
-                                    width: 100,
-                                    alignment: Alignment.center,
-                                    child: Text(tablePageModel.name),
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black, width: 2),
+                                    color: Colors.orange,
                                   ),
-                                ],
-                              ),
-                            ]),
+                                  height: 50,
+                                  width: 100,
+                                  alignment: Alignment.center,
+                                  child: Text(tablePageModel.name),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ],
                     );
                   }),
+                  Row(
+                    children: [],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -117,7 +219,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           height: 50,
                           width: 50,
                           alignment: Alignment.center,
-                          child: Text(totalV1.toString()),
+                          child: Text(
+                            totalV1.toString(),
+                          ),
                         ),
                         const SizedBox(
                           height: 16,
@@ -133,7 +237,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           height: 50,
                           width: 50,
                           alignment: Alignment.center,
-                          child: Text(totalV2.toString()),
+                          child: Text(
+                            totalV2.toString(),
+                          ),
                         ),
                         const SizedBox(
                           height: 16,
@@ -149,7 +255,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           height: 50,
                           width: 50,
                           alignment: Alignment.center,
-                          child: Text(totalV3.toString()),
+                          child: Text(
+                            totalV3.toString(),
+                          ),
                         ),
                         const SizedBox(
                           height: 16,
@@ -165,7 +273,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           height: 50,
                           width: 50,
                           alignment: Alignment.center,
-                          child: Text(totalV4.toString()),
+                          child: Text(
+                            totalV4.toString(),
+                          ),
                         ),
                       ],
                     ),
@@ -180,50 +290,74 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                               height: 16,
                             ),
                             Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                        color: Colors.black, width: 2)),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(price.price1.toString())),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(
+                                price.price1.toString(),
+                              ),
+                            ),
                             const SizedBox(
                               height: 16,
                             ),
                             Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                        color: Colors.black, width: 2)),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(price.price2.toString())),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(
+                                price.price2.toString(),
+                              ),
+                            ),
                             const SizedBox(
                               height: 16,
                             ),
                             Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                        color: Colors.black, width: 2)),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(price.price3.toString())),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(
+                                price.price3.toString(),
+                              ),
+                            ),
                             const SizedBox(
                               height: 16,
                             ),
                             Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    border: Border.all(
-                                        color: Colors.black, width: 2)),
-                                height: 50,
-                                width: 50,
-                                alignment: Alignment.center,
-                                child: Text(price.price4.toString())),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                              ),
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.center,
+                              child: Text(
+                                price.price4.toString(),
+                              ),
+                            ),
                             const SizedBox(
                               height: 16,
                             ),
@@ -232,6 +366,23 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                       );
                     },
                   ),
+                  Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                        ),
+                        height: 50,
+                        width: 50,
+                        alignment: Alignment.center,
+                        child: Text('dupa'),
+                      ),
+                    ],
+                  )
                 ]),
                 Center(
                   child: InkWell(
@@ -242,6 +393,8 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                               .read<ReciptPageCubit>()
                               .removeOrder(recipt.id);
                       }
+
+                      Navigator.of(context).pop();
                     },
                     child: Container(
                       height: 100,
