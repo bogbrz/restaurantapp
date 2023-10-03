@@ -40,6 +40,7 @@ class TableRepository {
     final doc =
         await FirebaseFirestore.instance.collection('orders').doc(number).get();
     return ReciptModel(
+        id: doc.id,
         v1: doc['Rum'],
         v2: doc['Tequilla'],
         v3: doc['Aperol'],
@@ -91,6 +92,7 @@ class TableRepository {
       return querySnapshot.docs.map(
         (doc) {
           return ReciptModel(
+              id: doc.id,
               v1: doc['Rum'],
               v2: doc['Tequilla'],
               v3: doc['Aperol'],
@@ -101,7 +103,7 @@ class TableRepository {
     });
   }
 
-  Future<void> removeDrink({required String id}) {
-    return FirebaseFirestore.instance.collection('drinks').doc(id).delete();
+  Future<void> removeOrder({required String id}) {
+    return FirebaseFirestore.instance.collection('orders').doc(id).delete();
   }
 }

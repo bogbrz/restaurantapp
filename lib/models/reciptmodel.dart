@@ -4,10 +4,12 @@ class ReciptModel {
   final int v3;
   final int v4;
   final String number;
+  final String id;
   ReciptModel(
       {required this.v1,
       required this.v2,
       required this.v3,
       required this.v4,
-      required this.number});
+      required this.number,
+      required this.id});
 }

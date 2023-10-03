@@ -181,7 +181,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                             ),
                             Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: Colors.red,
                                     border: Border.all(
                                         color: Colors.black, width: 2)),
                                 height: 50,
@@ -193,7 +193,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                             ),
                             Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: Colors.red,
                                     border: Border.all(
                                         color: Colors.black, width: 2)),
                                 height: 50,
@@ -205,7 +205,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                             ),
                             Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: Colors.red,
                                     border: Border.all(
                                         color: Colors.black, width: 2)),
                                 height: 50,
@@ -217,7 +217,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                             ),
                             Container(
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: Colors.red,
                                     border: Border.all(
                                         color: Colors.black, width: 2)),
                                 height: 50,
@@ -231,8 +231,27 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         ],
                       );
                     },
-                  )
+                  ),
                 ]),
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      for (final recipt in recipts) {
+                        if (widget.tableModel == recipt.number)
+                          context
+                              .read<ReciptPageCubit>()
+                              .removeOrder(recipt.id);
+                      }
+                    },
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      alignment: Alignment.center,
+                      color: Colors.red,
+                      child: const Text('Finished'),
+                    ),
+                  ),
+                )
               ]);
             },
           ),

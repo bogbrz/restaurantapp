@@ -50,17 +50,6 @@ class TablecontentCubit extends Cubit<TablecontentState> {
     }
   }
 
-  Future<void> remove(String documentId) async {
-    try {
-      await _tableRepository.removeDrink(id: documentId);
-    } catch (error) {
-      emit(TablecontentState(
-          errorMessage: error.toString(),
-          isLoading: false,
-          tablePageModels: const []));
-    }
-  }
-
   @override
   Future<void> close() {
     _streamSubscription?.cancel();
