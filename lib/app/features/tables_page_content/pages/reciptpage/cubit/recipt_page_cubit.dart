@@ -31,6 +31,20 @@ class ReciptPageCubit extends Cubit<ReciptPageState> {
           });
   }
 
+  Future<void> removeOrder(String orderId) async {
+    try {
+      await _tableRepository.removeOrder(id: orderId);
+    } catch (error) {
+      emit(
+        ReciptPageState(
+          isLoading: false,
+          errorMessage: error.toString(),
+          recipts: [],
+        ),
+      );
+    }
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();
