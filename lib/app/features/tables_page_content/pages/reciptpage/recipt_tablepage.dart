@@ -181,6 +181,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                                   .read<ReciptPageCubit>()
                                   .removeOrder(recipt.id);
                           }
+                          context.read<ReciptPageCubit>().addTotal(total);
 
                           Navigator.of(context).pop();
                         },
