@@ -3,6 +3,7 @@ import 'package:restaurantapp/models/pricemodel.dart';
 import 'package:restaurantapp/models/reciptmodel.dart';
 import 'package:restaurantapp/models/tablemodel.dart';
 import 'package:restaurantapp/models/tablepagemodel.dart';
+import 'package:restaurantapp/models/totalmodel.dart';
 
 class TableRepository {
   Stream<List<TableModel>> getTablesStream() {
@@ -28,6 +29,17 @@ class TableRepository {
             price2: doc['price2'],
             price3: doc['price3'],
             price4: doc['price4']);
+      }).toList();
+    });
+  }
+
+  Stream<List<TotalModel>> getTotalStream() {
+    return FirebaseFirestore.instance
+        .collection('totals')
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        return TotalModel(total: doc['total']);
       }).toList();
     });
   }
