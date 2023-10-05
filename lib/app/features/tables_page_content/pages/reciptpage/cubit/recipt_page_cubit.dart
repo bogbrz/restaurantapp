@@ -52,7 +52,6 @@ class ReciptPageCubit extends Cubit<ReciptPageState> {
       emit(ReciptPageState(
           recipts: const [], errorMessage: error.toString(), isLoading: false));
     }
-    start();
   }
 
   @override

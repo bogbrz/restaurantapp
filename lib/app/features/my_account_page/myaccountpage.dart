@@ -53,7 +53,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             "Day's earnings:  ${totalIncome.toString()}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 40),
                           ),
                         ),
