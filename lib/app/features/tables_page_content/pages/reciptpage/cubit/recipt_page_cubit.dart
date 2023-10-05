@@ -45,6 +45,16 @@ class ReciptPageCubit extends Cubit<ReciptPageState> {
     }
   }
 
+  Future<void> addTotal(int total) async {
+    try {
+      await _tableRepository.addTotal(total: total);
+    } catch (error) {
+      emit(ReciptPageState(
+          recipts: const [], errorMessage: error.toString(), isLoading: false));
+    }
+    start();
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

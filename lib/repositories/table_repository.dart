@@ -73,6 +73,14 @@ class TableRepository {
     );
   }
 
+  Future<void> addTotal({required int total}) {
+    return FirebaseFirestore.instance.collection('totals').add(
+      {
+        'total': total,
+      },
+    );
+  }
+
   Stream<List<TablePageModel>> getTableModelStream() {
     return FirebaseFirestore.instance
         .collection('drinks')

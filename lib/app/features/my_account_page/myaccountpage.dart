@@ -21,13 +21,8 @@ class MyAccountPage extends StatelessWidget {
       ),
       body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
-            'You are signed as ${emailController.text}',
-            style: const TextStyle(fontSize: 30),
-            textAlign: TextAlign.center,
-          ),
           const SizedBox(
             height: 20,
           ),
@@ -36,6 +31,13 @@ class MyAccountPage extends StatelessWidget {
               context.read<RootPageCubit>().signOut();
             },
             child: const Text("Sign Out"),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'You are signed as ${emailController.text}',
+            textAlign: TextAlign.center,
           ),
         ],
       )),
