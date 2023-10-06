@@ -20,6 +20,18 @@ class _LogInPageState extends State<LogInPage> {
   var isCreatingAccount = false;
 
   @override
+  void initState() {
+    super.initState();
+
+    emailController.addListener(() {
+      // Wywołuje setState za każdym razem, gdy zawartość kontrolera się zmieni
+      setState(() {});
+      passwordController.addListener(() {
+        setState(() {});
+      });
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -55,18 +67,20 @@ class _LogInPageState extends State<LogInPage> {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () async {
-                if (isCreatingAccount) {
-                  context.read<RootPageCubit>().createAccount(
-                      emailController.text, passwordController.text);
-                  //REGISTRATION
-                } else {
-                  context
-                      .read<RootPageCubit>()
-                      .sigIn(emailController.text, passwordController.text);
-                  //loging
-                }
-              },
+              onPressed: emailController.text.isEmpty ||
+                      passwordController.text.isEmpty
+                  ? null
+                  : () async {
+                      if (isCreatingAccount) {
+                        context.read<RootPageCubit>().createAccount(
+                            emailController.text, passwordController.text);
+                        //REGISTRATION
+                      } else {
+                        context.read<RootPageCubit>().sigIn(
+                            emailController.text, passwordController.text);
+                        //loging
+                      }
+                    },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
               ),
