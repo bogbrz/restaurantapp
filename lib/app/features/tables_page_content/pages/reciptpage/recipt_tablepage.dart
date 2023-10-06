@@ -31,11 +31,6 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
   var total = 0;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
