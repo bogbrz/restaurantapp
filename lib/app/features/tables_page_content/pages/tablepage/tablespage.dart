@@ -18,6 +18,15 @@ class _TablesPageState extends State<TablesPage> {
   final tableNumberController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    tableNumberController.addListener(() {
+      // Wywołuje setState za każdym razem, gdy zawartość kontrolera się zmieni
+      setState(() {});
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -29,14 +38,6 @@ class _TablesPageState extends State<TablesPage> {
         create: (context) => TablePageCubit(TableRepository())..start(),
         child: BlocListener<TablePageCubit, TablePageState>(
           listener: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Something went wrong'),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
             if (state.isLoading) {
               const Center(child: CircularProgressIndicator());
             }
@@ -64,13 +65,15 @@ class _TablesPageState extends State<TablesPage> {
                           width: 20,
                         ),
                         InkWell(
-                          onTap: () {
-                            context
-                                .read<TablePageCubit>()
-                                .add(tableNumberController.text);
+                          onTap: tableNumberController.text.isEmpty
+                              ? null
+                              : () {
+                                  context
+                                      .read<TablePageCubit>()
+                                      .add(tableNumberController.text);
 
-                            tableNumberController.clear();
-                          },
+                                  tableNumberController.clear();
+                                },
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(

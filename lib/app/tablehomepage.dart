@@ -26,11 +26,10 @@ class _RootPageState extends State<TableHomePage> {
           return TableScreenPage(
             tableModel: widget.tableModel,
           );
-        } else {
-          return ReciptTablePage(
-            tableModel: widget.tableModel,
-          );
         }
+        return ReciptTablePage(
+          tableModel: widget.tableModel,
+        );
       }),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
@@ -46,7 +45,7 @@ class _RootPageState extends State<TableHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: "Recipt",
+            label: "Receipt",
           ),
         ],
       ),

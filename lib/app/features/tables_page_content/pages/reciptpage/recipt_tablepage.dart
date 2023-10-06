@@ -123,9 +123,6 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           ],
                         );
                       }),
-                      Row(
-                        children: [],
-                      ),
                       AmountList(
                           totalV1: totalV1,
                           totalV2: totalV2,
@@ -160,16 +157,16 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           ),
                           child: Text(
                             'TOTAL : ${total.toString()}',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 70,
                           height: 50,
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Center(
@@ -177,9 +174,13 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         onTap: () {
                           for (final recipt in recipts) {
                             if (widget.tableModel == recipt.number)
-                              context
-                                  .read<ReciptPageCubit>()
-                                  .removeOrder(recipt.id);
+                              BlocListener(
+                                listener: (context, state) {
+                                  context
+                                      .read<ReciptPageCubit>()
+                                      .removeOrder(recipt.id);
+                                },
+                              );
                           }
                           context.read<ReciptPageCubit>().addTotal(total);
 
