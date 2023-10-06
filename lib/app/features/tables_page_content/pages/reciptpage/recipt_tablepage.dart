@@ -174,9 +174,13 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         onTap: () {
                           for (final recipt in recipts) {
                             if (widget.tableModel == recipt.number)
-                              context
-                                  .read<ReciptPageCubit>()
-                                  .removeOrder(recipt.id);
+                              BlocListener(
+                                listener: (context, state) {
+                                  context
+                                      .read<ReciptPageCubit>()
+                                      .removeOrder(recipt.id);
+                                },
+                              );
                           }
                           context.read<ReciptPageCubit>().addTotal(total);
 

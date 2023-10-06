@@ -38,14 +38,6 @@ class _TablesPageState extends State<TablesPage> {
         create: (context) => TablePageCubit(TableRepository())..start(),
         child: BlocListener<TablePageCubit, TablePageState>(
           listener: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Something went wrong'),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
             if (state.isLoading) {
               const Center(child: CircularProgressIndicator());
             }
