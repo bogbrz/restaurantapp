@@ -31,11 +31,6 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
   var total = 0;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -80,7 +75,6 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                   }
 
                   return ListView(children: [
-                    const Labels(),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       BlocBuilder<TablecontentCubit, TablecontentState>(
                           builder: (context, state) {
@@ -100,6 +94,25 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         final tablePageModels = state.tablePageModels;
                         return Column(
                           children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.orange,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 5,
+                                ),
+                              ),
+                              height: 50,
+                              width: 100,
+                              alignment: Alignment.center,
+                              child: const Text(
+                                "Drinks",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                             for (final tablePageModel in tablePageModels) ...[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -232,11 +245,36 @@ class TotalColumn extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 16,
+            height: 8,
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.orange,
+              border: Border.all(
+                color: Colors.black,
+                width: 5,
+              ),
+            ),
+            height: 50,
+            width: 65,
+            alignment: Alignment.center,
+            child: const Padding(
+              padding: EdgeInsets.all(2.0),
+              child: Text(
+                "Total",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.green,
               border: Border.all(
                 color: Colors.black,
                 width: 2,
@@ -252,7 +290,7 @@ class TotalColumn extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.green,
               border: Border.all(
                 color: Colors.black,
                 width: 2,
@@ -268,7 +306,7 @@ class TotalColumn extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.green,
               border: Border.all(
                 color: Colors.black,
                 width: 2,
@@ -284,7 +322,7 @@ class TotalColumn extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.green,
               border: Border.all(
                 color: Colors.black,
                 width: 2,
@@ -318,9 +356,34 @@ class PriceColumn extends StatelessWidget {
       children: [
         Column(
           children: [
+            const SizedBox(
+              height: 8,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                border: Border.all(
+                  color: Colors.black,
+                  width: 5,
+                ),
+              ),
+              height: 50,
+              width: 65,
+              alignment: Alignment.center,
+              child: const Padding(
+                padding: EdgeInsets.all(2.0),
+                child: Text(
+                  "Price",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
             for (final price in prices) ...[
               const SizedBox(
-                height: 16,
+                height: 8,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -424,6 +487,28 @@ class AmountList extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
+              color: Colors.orange,
+              border: Border.all(
+                color: Colors.black,
+                width: 5,
+              ),
+            ),
+            height: 50,
+            width: 50,
+            alignment: Alignment.center,
+            child: const Text(
+              "x",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.black,
                 width: 2,
@@ -491,114 +576,8 @@ class AmountList extends StatelessWidget {
               totalV4.toString(),
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class Labels extends StatelessWidget {
-  const Labels({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              border: Border.all(
-                color: Colors.black,
-                width: 5,
-              ),
-            ),
-            height: 40,
-            width: 100,
-            alignment: Alignment.center,
-            child: const Text(
-              "Drinks",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
           const SizedBox(
-            width: 16,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              border: Border.all(
-                color: Colors.black,
-                width: 5,
-              ),
-            ),
-            height: 45,
-            width: 45,
-            alignment: Alignment.center,
-            child: const Text(
-              "x",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              border: Border.all(
-                color: Colors.black,
-                width: 5,
-              ),
-            ),
-            height: 50,
-            width: 65,
-            alignment: Alignment.center,
-            child: const Padding(
-              padding: EdgeInsets.all(2.0),
-              child: Text(
-                "Price",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              border: Border.all(
-                color: Colors.black,
-                width: 5,
-              ),
-            ),
-            height: 50,
-            width: 65,
-            alignment: Alignment.center,
-            child: const Padding(
-              padding: EdgeInsets.all(2.0),
-              child: Text(
-                "Total",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            ),
+            height: 8,
           ),
         ],
       ),
