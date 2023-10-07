@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
 import 'package:restaurantapp/app/features/my_account_page/cubit/myaccount_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -36,30 +35,29 @@ class _MyAccountPageState extends State<MyAccountPage> {
 
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                            border: Border.all(color: Colors.black, width: 2)),
-                        height: 75,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Day's earnings:  ${totalIncome.toString()}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 40),
-                          ),
-                        ),
-                      ),
-                    ],
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Colors.grey,
+                    child: Icon(
+                      Icons.person,
+                      size: 65,
+                      color: Colors.black,
+                    ),
                   ),
                   const SizedBox(
-                    height: 200,
+                    height: 15,
+                  ),
+                  Text(
+                    'You are signed as ${emailController.text}',
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 15,
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -71,12 +69,33 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    'You are signed as ${emailController.text}',
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.orange,
+                              border:
+                                  Border.all(color: Colors.black, width: 2)),
+                          height: 75,
+                          width: 360,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Day's earnings:  ${totalIncome.toString()}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 30),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 200,
                   ),
                 ],
               ),
