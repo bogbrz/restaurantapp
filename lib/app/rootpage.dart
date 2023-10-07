@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
-import 'package:restaurantapp/app/homepage.dart';
+import 'package:restaurantapp/app/features/tables_page_content/pages/tablepage/tablespage.dart';
 //a
 
 class RootPage extends StatelessWidget {
@@ -20,7 +20,7 @@ class RootPage extends StatelessWidget {
           if (user == null) {
             return const LogInPage();
           }
-          return const HomePage();
+          return const TablesPage();
         },
       ),
     );

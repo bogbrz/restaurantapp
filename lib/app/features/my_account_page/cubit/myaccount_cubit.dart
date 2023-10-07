@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurantapp/models/totalmodel.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 
@@ -22,6 +23,10 @@ class MyaccountCubit extends Cubit<MyaccountState> {
         emit(MyaccountState(
             totals: [], isLoading: false, errorMessage: error.toString()));
       });
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   @override

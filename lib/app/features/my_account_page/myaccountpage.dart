@@ -8,10 +8,8 @@ import 'package:restaurantapp/repositories/table_repository.dart';
 
 class MyAccountPage extends StatefulWidget {
   const MyAccountPage({
-    required this.onSave,
     super.key,
   });
-  final Function onSave;
 
   @override
   State<MyAccountPage> createState() => _MyAccountPageState();
@@ -65,7 +63,8 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      context.read<RootPageCubit>().signOut();
+                      context.read<MyaccountCubit>().signOut();
+                      Navigator.of(context).pop();
                     },
                     child: const Text("Sign Out"),
                   ),
