@@ -102,6 +102,8 @@ class _LogInPageState extends State<LogInPage> {
               if (isCreatingAccount == false) ...[
                 TextButton(
                     onPressed: () {
+                      passwordController.clear();
+                      emailController.clear();
                       setState(() {
                         isCreatingAccount = true;
                       });
@@ -111,6 +113,8 @@ class _LogInPageState extends State<LogInPage> {
               if (isCreatingAccount == true) ...[
                 TextButton(
                     onPressed: () {
+                      passwordController.clear();
+                      emailController.clear();
                       setState(() {
                         isCreatingAccount = false;
                       });
