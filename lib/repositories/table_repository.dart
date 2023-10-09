@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurantapp/models/pricemodel.dart';
 import 'package:restaurantapp/models/reciptmodel.dart';
 import 'package:restaurantapp/models/tablemodel.dart';
@@ -7,7 +8,13 @@ import 'package:restaurantapp/models/totalmodel.dart';
 
 class TableRepository {
   Stream<List<TableModel>> getTablesStream() {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('tables')
         .orderBy('number', descending: false)
         .snapshots()
@@ -34,7 +41,13 @@ class TableRepository {
   }
 
   Stream<List<TotalModel>> getTotalStream() {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('totals')
         .snapshots()
         .map((querySnapshot) {
@@ -45,12 +58,29 @@ class TableRepository {
   }
 
   Future<void> remove({required String id}) {
-    return FirebaseFirestore.instance.collection('tables').doc(id).delete();
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('tables')
+        .doc(id)
+        .delete();
   }
 
   Future<ReciptModel> get({required String number}) async {
-    final doc =
-        await FirebaseFirestore.instance.collection('orders').doc(number).get();
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('orders')
+        .doc(number)
+        .get();
     return ReciptModel(
         id: doc.id,
         v1: doc['Rum'],
@@ -66,7 +96,15 @@ class TableRepository {
       required int v2,
       required int v3,
       required int v4}) {
-    return FirebaseFirestore.instance.collection('orders').add(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('orders')
+        .add(
       {
         'Rum': v1,
         'Tequilla': v2,
@@ -78,7 +116,15 @@ class TableRepository {
   }
 
   Future<void> add({required String tableNumber}) {
-    return FirebaseFirestore.instance.collection('tables').add(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('tables')
+        .add(
       {
         'number': tableNumber,
       },
@@ -86,7 +132,15 @@ class TableRepository {
   }
 
   Future<void> addTotal({required int total}) {
-    return FirebaseFirestore.instance.collection('totals').add(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('totals')
+        .add(
       {
         'total': total,
       },
@@ -105,7 +159,13 @@ class TableRepository {
   }
 
   Stream<List<ReciptModel>> getReciptModelStream() {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception("User is not logged in");
+    }
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('orders')
         .snapshots()
         .map((querySnapshot) {
@@ -124,6 +184,15 @@ class TableRepository {
   }
 
   Future<void> removeOrder({required String id}) {
-    return FirebaseFirestore.instance.collection('orders').doc(id).delete();
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception("User is not logged in");
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('orders')
+        .doc(id)
+        .delete();
   }
 }

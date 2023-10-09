@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/app/features/my_account_page/myaccountpage.dart';
 import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
 import 'package:restaurantapp/app/tablehomepage.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -33,6 +34,17 @@ class _TablesPageState extends State<TablesPage> {
         title: const Text("tables"),
         centerTitle: true,
         backgroundColor: Colors.orange,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const MyAccountPage(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.person))
+        ],
       ),
       body: BlocProvider(
         create: (context) => TablePageCubit(TableRepository())..start(),

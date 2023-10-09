@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
 import 'package:restaurantapp/app/features/my_account_page/cubit/myaccount_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -8,10 +7,8 @@ import 'package:restaurantapp/repositories/table_repository.dart';
 
 class MyAccountPage extends StatefulWidget {
   const MyAccountPage({
-    required this.onSave,
     super.key,
   });
-  final Function onSave;
 
   @override
   State<MyAccountPage> createState() => _MyAccountPageState();
@@ -38,39 +35,22 @@ class _MyAccountPageState extends State<MyAccountPage> {
 
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                            border: Border.all(color: Colors.black, width: 2)),
-                        height: 75,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Day's earnings:  ${totalIncome.toString()}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 40),
-                          ),
-                        ),
-                      ),
-                    ],
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const CircleAvatar(
+                    radius: 35,
+                    backgroundColor: Colors.grey,
+                    child: Icon(
+                      Icons.person,
+                      size: 65,
+                      color: Colors.black,
+                    ),
                   ),
                   const SizedBox(
-                    height: 200,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<RootPageCubit>().signOut();
-                    },
-                    child: const Text("Sign Out"),
-                  ),
-                  const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     'You are signed as ${emailController.text}',
@@ -78,6 +58,44 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   ),
                   const SizedBox(
                     height: 15,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<MyaccountCubit>().signOut();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("Sign Out"),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.orange,
+                              border:
+                                  Border.all(color: Colors.black, width: 2)),
+                          height: 75,
+                          width: 360,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Day's earnings:  ${totalIncome.toString()}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 30),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 200,
                   ),
                 ],
               ),
