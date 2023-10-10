@@ -206,4 +206,17 @@ class TableRepository {
         .doc(id)
         .delete();
   }
+
+  Future<void> removeTotals({required String id}) {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('user not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('totals')
+        .doc(id)
+        .delete();
+  }
 }

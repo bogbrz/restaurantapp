@@ -35,6 +35,10 @@ class MyaccountCubit extends Cubit<MyaccountState> {
     );
   }
 
+  Future<void> removeEnd(String id) async {
+    await _tableRepository.removeTotals(id: id);
+  }
+
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }

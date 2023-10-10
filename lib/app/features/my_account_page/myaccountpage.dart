@@ -17,8 +17,8 @@ class MyAccountPage extends StatefulWidget {
 
 class _MyAccountPageState extends State<MyAccountPage> {
   var date = DateFormat.yMMMd().format(DateTime.now());
+  int totalIncome = 0;
 
-  var totalIncome = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +95,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                       fontSize: 25),
                                 ),
                                 Text(
-                                  "Day's earnings:  ${totalIncome.toString()}",
+                                  "Day's earnings:  $totalIncome",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25),
@@ -112,10 +112,15 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   ),
                   InkWell(
                     onTap: () {
+                      for (final total
+                          in context.read<MyaccountCubit>().state.totals) {
+                        if (total.date == date) {
+                          context.read<MyaccountCubit>().removeEnd(total.id);
+                        }
+                      }
                       context.read<MyaccountCubit>().addEnd(totalIncome, date);
 
                       Navigator.of(context).pop();
-                      totalIncome = 0;
                     },
                     child: Container(
                       decoration: BoxDecoration(
