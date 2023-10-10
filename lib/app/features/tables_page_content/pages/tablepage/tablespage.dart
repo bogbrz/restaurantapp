@@ -17,13 +17,29 @@ class TablesPage extends StatefulWidget {
 
 class _TablesPageState extends State<TablesPage> {
   final tableNumberController = TextEditingController();
+  Set<String> addedNumbers = Set();
+  @override
+  void initState() {
+    super.initState();
+    tableNumberController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    tableNumberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("tables"),
-        centerTitle: true,
+        title: const Text(
+          "Tables",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.orange,
         actions: [
           IconButton(
@@ -34,7 +50,10 @@ class _TablesPageState extends State<TablesPage> {
                   ),
                 );
               },
-              icon: const Icon(Icons.person))
+              icon: const Icon(
+                Icons.person,
+                size: 40,
+              ))
         ],
       ),
       body: BlocProvider(
@@ -57,23 +76,43 @@ class _TablesPageState extends State<TablesPage> {
                       children: [
                         Expanded(
                           child: TextField(
-                              decoration: const InputDecoration(
-                                  label: Text(
-                                    "Table number",
-                                  ),
-                                  border: OutlineInputBorder()),
-                              controller: tableNumberController),
+                            decoration: const InputDecoration(
+                                label: Text("Table number",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20)),
+                                border: OutlineInputBorder()),
+                            controller: tableNumberController,
+                            keyboardType: TextInputType.number,
+                          ),
                         ),
                         const SizedBox(
                           width: 20,
                         ),
                         InkWell(
                           onTap: () {
-                            context
-                                .read<TablePageCubit>()
-                                .add(tableNumberController.text);
+                            final tableNumber = tableNumberController.text;
+                            if (tableNumberController.text.isNotEmpty &&
+                                !addedNumbers.contains(
+                                  tableNumber,
+                                )) {
+                              context
+                                  .read<TablePageCubit>()
+                                  .add(tableNumberController.text);
+                              addedNumbers.add(tableNumber);
 
-                            tableNumberController.clear();
+                              tableNumberController.clear();
+                            } else {
+                              const Center(
+                                child: Text(
+                                    'Table with that number already exists'),
+                              );
+                            }
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const TablesPage(),
+                              ),
+                            );
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -116,7 +155,9 @@ class _TablesPageState extends State<TablesPage> {
                         return direction == DismissDirection.endToStart;
                       },
                       onDismissed: (_) {
+                        final tableNumber = tableModel.number;
                         context.read<TablePageCubit>().remove(tableModel.id);
+                        addedNumbers.remove(tableNumber);
                       },
                       child: Builder(builder: (context) {
                         return Padding(
@@ -134,9 +175,10 @@ class _TablesPageState extends State<TablesPage> {
                                     height: 100,
                                     width: 100,
                                     child: Center(
-                                      child: Text(
-                                        tableModel.number,
-                                      ),
+                                      child: Text(tableModel.number,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20)),
                                     ),
                                   ),
                                   onTap: () {

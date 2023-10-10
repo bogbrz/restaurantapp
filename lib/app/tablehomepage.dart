@@ -31,23 +31,28 @@ class _RootPageState extends State<TableHomePage> {
           tableModel: widget.tableModel,
         );
       }),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (newIndex) {
-          setState(() {
-            currentIndex = newIndex;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Tables",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: "Receipt",
-          ),
-        ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+            border: BorderDirectional(
+                top: BorderSide(width: 4, color: Colors.black))),
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (newIndex) {
+            setState(() {
+              currentIndex = newIndex;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Tables",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book),
+              label: "Receipt",
+            ),
+          ],
+        ),
       ),
     );
   }

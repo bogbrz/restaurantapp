@@ -27,9 +27,9 @@ class _TableScreenPageState extends State<TableScreenPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        centerTitle: true,
         title: Text(
-          "table number ${widget.tableModel}",
+          "Table number ${widget.tableModel}",
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: BlocProvider(
@@ -344,7 +344,11 @@ class Drinks extends StatelessWidget {
                       width: 100,
                       color: Colors.orange,
                       alignment: Alignment.center,
-                      child: Text(tablePageModel.name),
+                      child: Text(
+                        tablePageModel.name,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
                     ),
                   ],
                 ),

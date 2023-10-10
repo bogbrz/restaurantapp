@@ -42,9 +42,7 @@ class TableRepository {
 
   Stream<List<TotalModel>> getTotalStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in');
-    }
+
     return FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
@@ -52,7 +50,7 @@ class TableRepository {
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.docs.map((doc) {
-        return TotalModel(total: doc['total'], id: doc.id);
+        return TotalModel(total: doc['total'], id: doc.id, date: doc['date']);
       }).toList();
     });
   }
@@ -141,7 +139,7 @@ class TableRepository {
     );
   }
 
-  Future<void> addTotal({required int total}) {
+  Future<void> addTotal({required int total, required String date}) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in');
@@ -153,6 +151,7 @@ class TableRepository {
         .add(
       {
         'total': total,
+        'date': date,
       },
     );
   }
@@ -202,6 +201,19 @@ class TableRepository {
         .collection('users')
         .doc(userID)
         .collection('orders')
+        .doc(id)
+        .delete();
+  }
+
+  Future<void> removeTotals({required String id}) {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('user not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('totals')
         .doc(id)
         .delete();
   }
