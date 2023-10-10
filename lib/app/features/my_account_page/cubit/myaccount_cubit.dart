@@ -41,6 +41,7 @@ class MyaccountCubit extends Cubit<MyaccountState> {
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
+    start();
   }
 
   @override

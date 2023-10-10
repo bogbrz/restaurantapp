@@ -103,11 +103,16 @@ class _TablesPageState extends State<TablesPage> {
 
                               tableNumberController.clear();
                             } else {
-                              Center(
-                                child: const Text(
+                              const Center(
+                                child: Text(
                                     'Table with that number already exists'),
                               );
                             }
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const TablesPage(),
+                              ),
+                            );
                           },
                           child: Container(
                             alignment: Alignment.center,

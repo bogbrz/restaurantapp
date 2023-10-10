@@ -77,12 +77,8 @@ class _LogInPageState extends State<LogInPage> {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: // emailController.text.isEmpty ||
-                    //         passwordController.text.isEmpty
-                    //     ? null
-                    //:
-                    () async {
+              InkWell(
+                onTap: () async {
                   if (isCreatingAccount) {
                     context.read<RootPageCubit>().createAccount(
                         emailController.text, passwordController.text);
@@ -94,10 +90,27 @@ class _LogInPageState extends State<LogInPage> {
                     //loging
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      color: Colors.orange,
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.black,
+                      ),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      isCreatingAccount ? "Create Account " : "Log in",
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ),
                 ),
-                child: Text(isCreatingAccount ? "Create Account " : "Log in"),
               ),
               if (isCreatingAccount == false) ...[
                 TextButton(
@@ -108,7 +121,10 @@ class _LogInPageState extends State<LogInPage> {
                         isCreatingAccount = true;
                       });
                     },
-                    child: const Text("Doesn't have an Account?")),
+                    child: const Text(
+                      "Doesn't have an Account?",
+                      style: TextStyle(color: Colors.black),
+                    )),
               ],
               if (isCreatingAccount == true) ...[
                 TextButton(
@@ -119,7 +135,10 @@ class _LogInPageState extends State<LogInPage> {
                         isCreatingAccount = false;
                       });
                     },
-                    child: const Text("Already have an account?"))
+                    child: const Text(
+                      "Already have an account?",
+                      style: TextStyle(color: Colors.black),
+                    ))
               ]
             ],
           ),

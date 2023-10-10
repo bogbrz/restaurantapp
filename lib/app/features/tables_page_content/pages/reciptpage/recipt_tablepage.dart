@@ -263,7 +263,6 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             alignment: Alignment.center,
-                            height: 40,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.red,
@@ -273,6 +272,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                             ),
                             child: const Text(
                               "ALWAYS REFRESH BEFORE SUBMITING",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),

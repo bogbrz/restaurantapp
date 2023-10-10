@@ -42,9 +42,7 @@ class TableRepository {
 
   Stream<List<TotalModel>> getTotalStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in');
-    }
+
     return FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
