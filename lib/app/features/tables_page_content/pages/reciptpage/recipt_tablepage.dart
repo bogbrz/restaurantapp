@@ -37,7 +37,10 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("table number ${widget.tableModel}"),
+          title: Text(
+            "Table number ${widget.tableModel}",
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
           backgroundColor: Colors.orange,
         ),
         body: MultiBlocProvider(
@@ -130,7 +133,12 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                                       height: 50,
                                       width: 100,
                                       alignment: Alignment.center,
-                                      child: Text(tablePageModel.name),
+                                      child: Text(
+                                        tablePageModel.name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -157,11 +165,8 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           value4: value4)
                     ]),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const SizedBox(
-                          width: 50,
-                        ),
                         InkWell(
                           onTap: () {
                             Navigator.of(context).pop();
@@ -179,11 +184,11 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                                 borderRadius: BorderRadius.circular(10),
                                 border:
                                     Border.all(width: 2, color: Colors.black)),
-                            child: const Icon(Icons.refresh),
+                            child: const Icon(
+                              Icons.refresh,
+                              size: 40,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 50,
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -203,18 +208,18 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
                               ),
-                              Text(date),
+                              Text(
+                                date,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          width: 50,
-                          height: 50,
-                        )
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Column(
                       children: [
@@ -237,7 +242,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Colors.red,
+                                  color: Colors.deepOrange,
                                   border: Border.all(
                                       color: Colors.black, width: 2)),
                               height: 50,
@@ -245,7 +250,8 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                               alignment: Alignment.center,
                               child: const Text(
                                 'Submit',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),
                           ),
@@ -253,15 +259,23 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.red,
+                              border: Border.all(
+                                width: 2,
+                              ),
                             ),
-                          ),
-                          child: const Text(
-                            "Always refresh before submiting",
-                            style: TextStyle(fontSize: 10),
+                            child: const Text(
+                              "ALWAYS REFRESH BEFORE SUBMITING",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         )
                       ],
@@ -334,7 +348,10 @@ class TotalColumn extends StatelessWidget {
             height: 50,
             width: 50,
             alignment: Alignment.center,
-            child: Text(value1.toString()),
+            child: Text(
+              value1.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
           ),
           const SizedBox(
             height: 16,
@@ -350,7 +367,9 @@ class TotalColumn extends StatelessWidget {
             height: 50,
             width: 50,
             alignment: Alignment.center,
-            child: Text(value2.toString()),
+            child: Text(value2.toString(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           ),
           const SizedBox(
             height: 16,
@@ -366,7 +385,9 @@ class TotalColumn extends StatelessWidget {
             height: 50,
             width: 50,
             alignment: Alignment.center,
-            child: Text(value3.toString()),
+            child: Text(value3.toString(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           ),
           const SizedBox(
             height: 16,
@@ -382,7 +403,9 @@ class TotalColumn extends StatelessWidget {
             height: 50,
             width: 50,
             alignment: Alignment.center,
-            child: Text(value4.toString()),
+            child: Text(value4.toString(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           ),
           const SizedBox(
             height: 16,
@@ -449,6 +472,8 @@ class PriceColumn extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   price.price1.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               const SizedBox(
@@ -467,6 +492,8 @@ class PriceColumn extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   price.price2.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               const SizedBox(
@@ -485,6 +512,8 @@ class PriceColumn extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   price.price3.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               const SizedBox(
@@ -503,6 +532,8 @@ class PriceColumn extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   price.price4.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
               const SizedBox(
@@ -571,6 +602,7 @@ class AmountList extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               totalV1.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           const SizedBox(
@@ -589,6 +621,7 @@ class AmountList extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               totalV2.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           const SizedBox(
@@ -607,6 +640,7 @@ class AmountList extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               totalV3.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           const SizedBox(
@@ -625,6 +659,7 @@ class AmountList extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               totalV4.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           const SizedBox(

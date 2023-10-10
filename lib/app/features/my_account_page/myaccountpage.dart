@@ -23,7 +23,10 @@ class _MyAccountPageState extends State<MyAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Account"),
+        title: const Text(
+          "My account",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.orange,
       ),
@@ -41,7 +44,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 15,
+                    height: 40,
                   ),
                   const CircleAvatar(
                     radius: 35,
@@ -57,17 +60,12 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   ),
                   Text(
                     'You are signed as ${emailController.text}',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 15,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<MyaccountCubit>().signOut();
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text("Sign Out"),
                   ),
                   const SizedBox(
                     height: 20,
@@ -80,6 +78,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                         Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
                               color: Colors.orange,
                               border:
                                   Border.all(color: Colors.black, width: 2)),
@@ -108,29 +107,85 @@ class _MyAccountPageState extends State<MyAccountPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 100,
+                    height: 20,
                   ),
-                  InkWell(
-                    onTap: () {
-                      for (final total
-                          in context.read<MyaccountCubit>().state.totals) {
-                        if (total.date == date) {
-                          context.read<MyaccountCubit>().removeEnd(total.id);
-                        }
-                      }
-                      context.read<MyaccountCubit>().addEnd(totalIncome, date);
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            for (final total in context
+                                .read<MyaccountCubit>()
+                                .state
+                                .totals) {
+                              if (total.date == date) {
+                                context
+                                    .read<MyaccountCubit>()
+                                    .removeEnd(total.id);
+                              }
+                            }
+                            context
+                                .read<MyaccountCubit>()
+                                .addEnd(totalIncome, date);
 
-                      Navigator.of(context).pop();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.black),
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text("Close day"),
-                      ),
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: ((context) => const MyAccountPage()),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2, color: Colors.black),
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                "Close day",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            context.read<MyaccountCubit>().signOut();
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                width: 2,
+                                color: Colors.black,
+                              ),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                "Sign Out ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        )
+                      ],
                     ),
                   )
                 ],
