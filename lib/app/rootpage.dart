@@ -20,6 +20,7 @@ class RootPage extends StatelessWidget {
           if (user == null) {
             return const LogInPage();
           }
+
           return const TablesPage();
         },
       ),

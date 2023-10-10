@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/pricemodel_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
+import 'package:restaurantapp/app/tablehomepage.dart';
 import 'package:restaurantapp/models/pricemodel.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 
@@ -156,6 +157,32 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => TableHomePage(
+                                      tableModel: widget.tableModel)),
+                            );
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlue,
+                                borderRadius: BorderRadius.circular(10),
+                                border:
+                                    Border.all(width: 2, color: Colors.black)),
+                            child: const Icon(Icons.refresh),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
                         Container(
                           alignment: Alignment.center,
                           height: 50,
@@ -174,7 +201,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                           ),
                         ),
                         const SizedBox(
-                          width: 70,
+                          width: 50,
                           height: 50,
                         )
                       ],
@@ -182,34 +209,53 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          for (final recipt in recipts) {
-                            if (widget.tableModel == recipt.number)
-                              context
-                                  .read<ReciptPageCubit>()
-                                  .removeOrder(recipt.id);
-                          }
-                          context.read<ReciptPageCubit>().addTotal(total);
+                    Column(
+                      children: [
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              for (final recipt in recipts) {
+                                if (widget.tableModel == recipt.number) {
+                                  context
+                                      .read<ReciptPageCubit>()
+                                      .removeOrder(recipt.id);
+                                }
+                              }
+                              context.read<ReciptPageCubit>().addTotal(total);
 
-                          Navigator.of(context).pop();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
-                              border:
-                                  Border.all(color: Colors.black, width: 2)),
-                          height: 50,
-                          width: 100,
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Finished',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.red,
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              height: 50,
+                              width: 100,
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Submit',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 2,
+                            ),
+                          ),
+                          child: const Text(
+                            "Always refresh before submiting",
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        )
+                      ],
                     )
                   ]);
                 },

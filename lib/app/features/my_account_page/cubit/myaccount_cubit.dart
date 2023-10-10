@@ -25,6 +25,16 @@ class MyaccountCubit extends Cubit<MyaccountState> {
       });
   }
 
+  Future<void> addEnd(
+    int totalIncome,
+    String date,
+  ) async {
+    await _tableRepository.addEnd(
+      totalIncome: totalIncome,
+      date: date,
+    );
+  }
+
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }

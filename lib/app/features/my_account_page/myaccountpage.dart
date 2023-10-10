@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
 import 'package:restaurantapp/app/features/my_account_page/cubit/myaccount_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -15,6 +16,8 @@ class MyAccountPage extends StatefulWidget {
 }
 
 class _MyAccountPageState extends State<MyAccountPage> {
+  var date = DateFormat.yMMMd().format(DateTime.now());
+
   var totalIncome = 0;
   @override
   Widget build(BuildContext context) {
@@ -69,10 +72,33 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            border: Border.all(color: Colors.black, width: 2)),
+                        height: 75,
+                        width: 300,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            "Date : $date",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           alignment: Alignment.center,
@@ -81,13 +107,13 @@ class _MyAccountPageState extends State<MyAccountPage> {
                               border:
                                   Border.all(color: Colors.black, width: 2)),
                           height: 75,
-                          width: 360,
+                          width: 300,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Text(
                               "Day's earnings:  ${totalIncome.toString()}",
                               style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             ),
                           ),
                         ),
@@ -95,8 +121,26 @@ class _MyAccountPageState extends State<MyAccountPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 200,
+                    height: 100,
                   ),
+                  InkWell(
+                    onTap: () {
+                      context.read<MyaccountCubit>().addEnd(totalIncome, date);
+
+                      Navigator.of(context).pop();
+                      totalIncome = 0;
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.black),
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text("Close day"),
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
