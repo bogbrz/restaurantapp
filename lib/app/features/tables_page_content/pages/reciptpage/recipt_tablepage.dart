@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/pricemodel_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
@@ -30,6 +31,7 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
   var value4 = 0;
 
   var total = 0;
+  var date = DateFormat.yMMMd().format(DateTime.now()).toString();
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +187,6 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          height: 50,
                           width: 100,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -195,9 +196,15 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                               width: 2,
                             ),
                           ),
-                          child: Text(
-                            'TOTAL : ${total.toString()}',
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          child: Column(
+                            children: [
+                              Text(
+                                'TOTAL : ${total.toString()}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(date),
+                            ],
                           ),
                         ),
                         const SizedBox(
@@ -221,7 +228,9 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
                                       .removeOrder(recipt.id);
                                 }
                               }
-                              context.read<ReciptPageCubit>().addTotal(total);
+                              context
+                                  .read<ReciptPageCubit>()
+                                  .addTotal(total, date.toString());
 
                               Navigator.of(context).pop();
                             },

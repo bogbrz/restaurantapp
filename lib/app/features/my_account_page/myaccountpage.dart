@@ -72,29 +72,6 @@ class _MyAccountPageState extends State<MyAccountPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                            border: Border.all(color: Colors.black, width: 2)),
-                        height: 75,
-                        width: 300,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            "Date : $date",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -106,14 +83,24 @@ class _MyAccountPageState extends State<MyAccountPage> {
                               color: Colors.orange,
                               border:
                                   Border.all(color: Colors.black, width: 2)),
-                          height: 75,
                           width: 300,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
-                            child: Text(
-                              "Day's earnings:  ${totalIncome.toString()}",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "Date : $date,",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25),
+                                ),
+                                Text(
+                                  "Day's earnings:  ${totalIncome.toString()}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25),
+                                ),
+                              ],
                             ),
                           ),
                         ),
