@@ -18,12 +18,10 @@ class ReciptPageCubit extends Cubit<ReciptPageState> {
   Future<void> start() async {
     _streamSubscription =
         _tableRepository.getReciptModelStream().listen((recipts) {
-      print('Received data from stream: $recipts');
       emit(ReciptPageState(
           isLoading: false, errorMessage: '', recipts: recipts));
     })
           ..onError((error) {
-            print('Error from stream: $error');
             emit(ReciptPageState(
                 isLoading: false,
                 errorMessage: error.toString(),

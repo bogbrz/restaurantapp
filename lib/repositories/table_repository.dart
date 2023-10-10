@@ -52,7 +52,7 @@ class TableRepository {
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.docs.map((doc) {
-        return TotalModel(total: doc['total']);
+        return TotalModel(total: doc['total'], id: doc.id);
       }).toList();
     });
   }
@@ -88,6 +88,16 @@ class TableRepository {
         v3: doc['Aperol'],
         v4: doc['Whiskey'],
         number: doc['tablenumber']);
+  }
+
+  Future<void> addEnd({
+    required int totalIncome,
+    required String date,
+  }) async {
+    await FirebaseFirestore.instance.collection('Income').add({
+      'date': date,
+      'totalIncome': totalIncome,
+    });
   }
 
   Future<void> add2(
@@ -186,7 +196,7 @@ class TableRepository {
   Future<void> removeOrder({required String id}) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
-      throw Exception("User is not logged in");
+      throw Exception('user not logged in');
     }
     return FirebaseFirestore.instance
         .collection('users')
