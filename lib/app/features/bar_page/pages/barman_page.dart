@@ -38,64 +38,109 @@ class _MyWidgetState extends State<BarmanPage> {
           builder: (context, state) {
             final recipts = state.recipts;
 
-            for (final recipt in recipts) {
-              rv1 = recipt.v1;
-              rv2 = recipt.v2;
-              rv3 = recipt.v3;
-              rv4 = recipt.v4;
-              tnumber = recipt.number;
-            }
             return BlocBuilder<TablecontentCubit, TablecontentState>(
               builder: (context, state) {
                 final tablePageModels = state.tablePageModels;
 
                 return ListView(children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 30, right: 30, top: 20),
-                    child: Container(
-                      decoration: const BoxDecoration(color: Colors.orange),
-                      child: Column(children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, top: 8, right: 8),
-                              child:
-                                  Text("Table Number : ${tnumber.toString()}"),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 15, bottom: 8, top: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  for (final recipt in recipts) ...[
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 30, right: 30, top: 20),
+                      child: Container(
+                        decoration: const BoxDecoration(color: Colors.orange),
+                        child: Column(children: [
+                          Row(
                             children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.black,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8, top: 8, right: 8),
+                                child: Text(
+                                  "Table Number : ${recipt.number}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, right: 15, bottom: 8, top: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        "Drinks",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    child: const Text(
-                                      "Drinks",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                    const SizedBox(
+                                      height: 8,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  for (final tablePageModel
-                                      in tablePageModels) ...[
+                                    for (final tablePageModel
+                                        in tablePageModels) ...[
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: Colors.amber,
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            tablePageModel.name,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                    ]
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        "X",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
@@ -110,43 +155,16 @@ class _MyWidgetState extends State<BarmanPage> {
                                           ),
                                         ),
                                         child: Text(
-                                          tablePageModel.name,
+                                          recipt.v1.toString(),
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                     ),
-                                  ]
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.black,
-                                      ),
+                                    const SizedBox(
+                                      height: 8,
                                     ),
-                                    child: const Text(
-                                      "X",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
+                                    Container(
                                       alignment: Alignment.center,
                                       width: 100,
                                       height: 50,
@@ -158,83 +176,63 @@ class _MyWidgetState extends State<BarmanPage> {
                                         ),
                                       ),
                                       child: Text(
-                                        rv1.toString(),
+                                        recipt.v2.toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.amber,
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.black,
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.amber,
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        recipt.v4.toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    child: Text(
-                                      rv2.toString(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                    const SizedBox(
+                                      height: 16,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.amber,
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.black,
+                                    Container(
+                                      alignment: Alignment.center,
+                                      width: 100,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.amber,
+                                        border: Border.all(
+                                          width: 2,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        recipt.v4.toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    child: Text(
-                                      rv3.toString(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                    const SizedBox(
+                                      height: 24,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.amber,
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      rv4.toString(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 24,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ]),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ]),
+                      ),
                     ),
-                  ),
+                  ]
                 ]);
               },
             );
