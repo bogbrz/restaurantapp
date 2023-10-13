@@ -50,6 +50,18 @@ class TablecontentCubit extends Cubit<TablecontentState> {
     }
   }
 
+  Future<void> addBar(String tableNumber, int v1, v2, v3, v4) async {
+    try {
+      await _tableRepository.addBar(
+          tableNumber: tableNumber, v1: v1, v2: v2, v3: v3, v4: v4);
+    } catch (error) {
+      emit(TablecontentState(
+          errorMessage: error.toString(),
+          isLoading: false,
+          tablePageModels: const []));
+    }
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();
