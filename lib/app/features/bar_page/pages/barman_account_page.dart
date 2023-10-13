@@ -35,15 +35,181 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
         child: BlocBuilder<BarmanCubit, BarmanState>(
           builder: (context, state) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Center(
-                  child: Text('barman accoubt'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(border: Border.all(width: 2)),
+                      child: SizedBox(
+                        height: 300,
+                        width: 300,
+                        child: ListView(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(color: Colors.red),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.orange,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      width: 300,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Date : $date,",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                            Text(
+                                              "Day's earnings:  $totalIncome",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.orange,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      width: 300,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Date : $date,",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                            Text(
+                                              "Day's earnings:  $totalIncome",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.orange,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      width: 300,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Date : $date,",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                            Text(
+                                              "Day's earnings:  $totalIncome",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.orange,
+                                          border: Border.all(
+                                              color: Colors.black, width: 2)),
+                                      width: 300,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Date : $date,",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                            Text(
+                                              "Day's earnings:  $totalIncome",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 25),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      context.read<BarmanCubit>().signOut();
-                    },
-                    child: const Text("Sign out"))
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        context.read<BarmanCubit>().signOut();
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        width: 150,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.blueGrey,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 2,
+                            color: Colors.black,
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            "Sign Out ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             );
           },
