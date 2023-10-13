@@ -162,11 +162,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                         InkWell(
                           onTap: () {
                             context.read<MyaccountCubit>().signOut();
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const RootPage(),
-                              ),
-                            );
+                            Navigator.of(context).pop();
                           },
                           child: Container(
                             alignment: Alignment.center,
