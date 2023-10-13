@@ -28,6 +28,10 @@ class BarmanCubit extends Cubit<BarmanState> {
     );
   }
 
+  Future<void> removeBarOder(String barOderId) async {
+    _tableRepository.removeBarOrder(id: barOderId);
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

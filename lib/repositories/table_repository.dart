@@ -141,6 +141,10 @@ class TableRepository {
     );
   }
 
+  Future<void> removeBarOrder({required String id}) {
+    return FirebaseFirestore.instance.collection('bar_orders').doc(id).delete();
+  }
+
   Future<void> add({required String tableNumber}) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
