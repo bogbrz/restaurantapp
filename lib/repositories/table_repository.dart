@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurantapp/models/ordermodel.dart';
 import 'package:restaurantapp/models/pricemodel.dart';
 import 'package:restaurantapp/models/reciptmodel.dart';
 import 'package:restaurantapp/models/tablemodel.dart';
@@ -123,6 +124,23 @@ class TableRepository {
     );
   }
 
+  Future<void> addBar(
+      {required String tableNumber,
+      required int v1,
+      required int v2,
+      required int v3,
+      required int v4}) {
+    return FirebaseFirestore.instance.collection('bar_orders').add(
+      {
+        'Rum': v1,
+        'Tequilla': v2,
+        'Aperol': v3,
+        'Whiskey': v4,
+        'tablenumber': tableNumber,
+      },
+    );
+  }
+
   Future<void> add({required String tableNumber}) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -181,6 +199,25 @@ class TableRepository {
       return querySnapshot.docs.map(
         (doc) {
           return ReciptModel(
+              id: doc.id,
+              v1: doc['Rum'],
+              v2: doc['Tequilla'],
+              v3: doc['Aperol'],
+              v4: doc['Whiskey'],
+              number: doc['tablenumber']);
+        },
+      ).toList();
+    });
+  }
+
+  Stream<List<OrderModel>> getOrderModelStream() {
+    return FirebaseFirestore.instance
+        .collection('bar_orders')
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map(
+        (doc) {
+          return OrderModel(
               id: doc.id,
               v1: doc['Rum'],
               v2: doc['Tequilla'],

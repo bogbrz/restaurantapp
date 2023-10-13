@@ -209,6 +209,9 @@ class _TableScreenPageState extends State<TableScreenPage> {
                     context
                         .read<TablecontentCubit>()
                         .add(widget.tableModel, v1, v2, v3, v4);
+                    context
+                        .read<TablecontentCubit>()
+                        .addBar(widget.tableModel, v1, v2, v3, v4);
 
                     setState(() {
                       v1 = 0;

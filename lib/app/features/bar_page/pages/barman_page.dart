@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/app/features/bar_page/pages/cubit/barman_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -12,12 +13,6 @@ class BarmanPage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<BarmanPage> {
-  var rv1 = 0;
-  var rv2 = 0;
-  var rv3 = 0;
-  var rv4 = 0;
-  var tnumber = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,19 +26,19 @@ class _MyWidgetState extends State<BarmanPage> {
             create: (context) => TablecontentCubit(TableRepository())..start(),
           ),
           BlocProvider(
-            create: (context) => ReciptPageCubit(TableRepository())..start(),
+            create: (context) => BarmanCubit(TableRepository())..start(),
           ),
         ],
-        child: BlocBuilder<ReciptPageCubit, ReciptPageState>(
+        child: BlocBuilder<BarmanCubit, BarmanState>(
           builder: (context, state) {
-            final recipts = state.recipts;
+            final orders = state.orders;
 
             return BlocBuilder<TablecontentCubit, TablecontentState>(
               builder: (context, state) {
                 final tablePageModels = state.tablePageModels;
 
                 return ListView(children: [
-                  for (final recipt in recipts) ...[
+                  for (final order in orders) ...[
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 30, right: 30, top: 20),
@@ -56,7 +51,7 @@ class _MyWidgetState extends State<BarmanPage> {
                                 padding: const EdgeInsets.only(
                                     left: 8, top: 8, right: 8),
                                 child: Text(
-                                  "Table Number : ${recipt.number}",
+                                  "Table Number : ${order.number}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -155,7 +150,7 @@ class _MyWidgetState extends State<BarmanPage> {
                                           ),
                                         ),
                                         child: Text(
-                                          recipt.v1.toString(),
+                                          order.v1.toString(),
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -176,7 +171,7 @@ class _MyWidgetState extends State<BarmanPage> {
                                         ),
                                       ),
                                       child: Text(
-                                        recipt.v2.toString(),
+                                        order.v2.toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -196,7 +191,7 @@ class _MyWidgetState extends State<BarmanPage> {
                                         ),
                                       ),
                                       child: Text(
-                                        recipt.v4.toString(),
+                                        order.v3.toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -216,7 +211,7 @@ class _MyWidgetState extends State<BarmanPage> {
                                         ),
                                       ),
                                       child: Text(
-                                        recipt.v4.toString(),
+                                        order.v4.toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
