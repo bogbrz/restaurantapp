@@ -28,6 +28,10 @@ class BarmanCubit extends Cubit<BarmanState> {
     );
   }
 
+  Future<void> signOut() async {
+    await _tableRepository.signOut();
+  }
+
   Future<void> removeBarOder(String barOderId) async {
     _tableRepository.removeBarOrder(id: barOderId);
   }

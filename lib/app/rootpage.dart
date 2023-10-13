@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurantapp/app/barman_rootpage.dart';
 import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablepage/tablespage.dart';
@@ -19,6 +20,9 @@ class RootPage extends StatelessWidget {
           final user = state.user;
           if (user == null) {
             return const LogInPage();
+          }
+          if (user.email == "barman@wp.pl") {
+            return const BarmanHomePage();
           }
 
           return const TablesPage();

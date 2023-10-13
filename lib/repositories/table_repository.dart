@@ -89,6 +89,10 @@ class TableRepository {
         number: doc['tablenumber']);
   }
 
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   Future<void> addEnd({
     required int totalIncome,
     required String date,

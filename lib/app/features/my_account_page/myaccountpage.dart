@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:restaurantapp/app/features/bar_page/pages/barman_page.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
 import 'package:restaurantapp/app/features/my_account_page/cubit/myaccount_cubit.dart';
-import 'package:restaurantapp/app/rootpage.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 //a
 
