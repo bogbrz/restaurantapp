@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:restaurantapp/app/features/bar_page/pages/barman_page.dart';
+import 'package:restaurantapp/app/barman_rootpage.dart';
 import 'package:restaurantapp/app/features/log/log_in_page.dart';
 import 'package:restaurantapp/app/features/my_account_page/cubit/myaccount_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
@@ -193,7 +193,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const BarmanPage(),
+                            builder: (context) => const BarmanHomePage(),
                           ),
                         );
                       },

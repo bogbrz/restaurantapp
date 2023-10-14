@@ -51,7 +51,7 @@ class _MyWidgetState extends State<BarmanPage> {
                             color: Colors.red,
                           ),
                           child: Align(
-                            alignment: Alignment.centerRight,
+                            alignment: Alignment.center,
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Icon(Icons.delete),
