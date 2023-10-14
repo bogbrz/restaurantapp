@@ -49,7 +49,7 @@ class TableRepository {
         .map((querySnapshot) {
       return querySnapshot.docs.map((doc) {
         return IncomeModel(
-            income: doc['totalIncome'], id: doc.id, date: doc['date']);
+            totalIncome: doc['totalIncome'], id: doc.id, date: doc['date']);
       }).toList();
     });
   }
@@ -80,36 +80,6 @@ class TableRepository {
         .collection('tables')
         .doc(id)
         .delete();
-  }
-
-  Future<IncomeModel> getIncome({required String id}) async {
-    final doc =
-        await FirebaseFirestore.instance.collection('Income').doc(id).get();
-    return IncomeModel(
-      id: doc.id,
-      income: doc['totalIncome'],
-      date: doc['date'],
-    );
-  }
-
-  Future<ReciptModel> get({required String number}) async {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in');
-    }
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('orders')
-        .doc(number)
-        .get();
-    return ReciptModel(
-        id: doc.id,
-        v1: doc['Rum'],
-        v2: doc['Tequilla'],
-        v3: doc['Aperol'],
-        v4: doc['Whiskey'],
-        number: doc['tablenumber']);
   }
 
   Future<void> signOut() async {

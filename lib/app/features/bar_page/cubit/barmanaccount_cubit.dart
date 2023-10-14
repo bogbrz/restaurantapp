@@ -40,17 +40,6 @@ class BarmanAccountCubit extends Cubit<BarmanAccountState> {
       });
   }
 
-  Future<void> getIncome(String id) async {
-    final incomModel = await _tableRepository.getIncome(id: id);
-    emit(
-      BarmanAccountState(
-          isLoading: false,
-          errorMessage: '',
-          income: [],
-          incomeModel: incomModel),
-    );
-  }
-
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

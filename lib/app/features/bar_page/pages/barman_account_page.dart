@@ -18,8 +18,8 @@ class BarmanAccountPage extends StatefulWidget {
 
 class _MyAccountPageState extends State<BarmanAccountPage> {
   var date = DateFormat.yMMMd().format(DateTime.now());
-  int totalIncome = 0;
-
+  var newDate = '';
+  var totalIncome = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +46,16 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
               builder: (context, state) {
                 final incomes = state.income;
 
+                for (final income in incomes) {
+                  if (income.date == date) {
+                    totalIncome += income.totalIncome;
+                    newDate = income.date;
+                  }
+                }
+                if (incomes.isEmpty) {
+                  return CircularProgressIndicator();
+                }
+
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -56,54 +66,44 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                           decoration:
                               BoxDecoration(border: Border.all(width: 2)),
                           child: SizedBox(
-                            height: 300,
-                            width: 300,
+                            height: 350,
+                            width: 350,
                             child: ListView(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration:
-                                        const BoxDecoration(color: Colors.red),
-                                    child: Column(
-                                      children: [
-                                        for (final income in incomes) ...[
-                                          Container(
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: Colors.orange,
-                                                border: Border.all(
-                                                    color: Colors.black,
-                                                    width: 2)),
-                                            width: 300,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    "Date : ${income.date}",
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 25),
-                                                  ),
-                                                  Text(
-                                                    "Day's earnings: ${income.income} ",
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 25),
-                                                  ),
-                                                ],
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.orange,
+                                            border: Border.all(
+                                                color: Colors.black, width: 2)),
+                                        width: 300,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "Date : $newDate",
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 25),
                                               ),
-                                            ),
+                                              Text(
+                                                "Day's earnings: $totalIncome ",
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 25),
+                                              ),
+                                            ],
                                           ),
-                                        ]
-                                      ],
-                                    ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

@@ -8,7 +8,13 @@ part 'myaccount_state.dart';
 
 class MyaccountCubit extends Cubit<MyaccountState> {
   MyaccountCubit(this._tableRepository)
-      : super(MyaccountState(totals: [], isLoading: false, errorMessage: ''));
+      : super(
+          MyaccountState(
+            totals: [],
+            isLoading: false,
+            errorMessage: '',
+          ),
+        );
 
   final TableRepository _tableRepository;
 
