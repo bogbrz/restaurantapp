@@ -17,8 +17,6 @@ class TablePageCubit extends Cubit<TablePageState> {
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit(const TablePageState(tables: [], errorMessage: '', isLoading: true));
-
     _streamSubscription = _tableRepository.getTablesStream().listen((tables) {
       //KONWERTUJEMY DANE Z BAZY NA Table model .map((DOC) {} )  doc oznacza dokumenty z bazy danych a w {co ma zwrócić}
 

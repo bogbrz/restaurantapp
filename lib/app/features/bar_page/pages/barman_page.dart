@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/app/features/bar_page/pages/cubit/barman_cubit.dart';
+import 'package:restaurantapp/app/features/bar_page/cubit/barman_cubit.dart';
+
 import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 
@@ -16,7 +17,10 @@ class _MyWidgetState extends State<BarmanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Incoming orders'),
+        title: const Text(
+          'Incoming orders',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.orange,
       ),
       body: MultiBlocProvider(
@@ -40,15 +44,18 @@ class _MyWidgetState extends State<BarmanPage> {
                   for (final order in orders) ...[
                     Dismissible(
                       key: ValueKey(order.id),
-                      background: const DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                        ),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(Icons.delete),
+                      background: const Padding(
+                        padding: EdgeInsets.only(right: 30, top: 20),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(Icons.delete),
+                            ),
                           ),
                         ),
                       ),
@@ -62,7 +69,10 @@ class _MyWidgetState extends State<BarmanPage> {
                         padding:
                             const EdgeInsets.only(left: 30, right: 30, top: 20),
                         child: Container(
-                          decoration: const BoxDecoration(color: Colors.orange),
+                          decoration: BoxDecoration(
+                              color: Colors.orange,
+                              border: Border.all(width: 2, color: Colors.black),
+                              borderRadius: BorderRadius.circular(10)),
                           child: Column(children: [
                             Row(
                               children: [
@@ -91,12 +101,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                         width: 100,
                                         height: 50,
                                         decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          border: Border.all(
-                                            width: 2,
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                            color: Colors.red,
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.black,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
                                         child: const Text(
                                           "Drinks",
                                           style: TextStyle(
@@ -115,12 +126,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                             width: 100,
                                             height: 50,
                                             decoration: BoxDecoration(
-                                              color: Colors.amber,
-                                              border: Border.all(
-                                                width: 2,
-                                                color: Colors.black,
-                                              ),
-                                            ),
+                                                color: Colors.amber,
+                                                border: Border.all(
+                                                  width: 2,
+                                                  color: Colors.black,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
                                             child: Text(
                                               tablePageModel.name,
                                               style: const TextStyle(
@@ -141,12 +153,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                         width: 100,
                                         height: 50,
                                         decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          border: Border.all(
-                                            width: 2,
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                            color: Colors.red,
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.black,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
                                         child: const Text(
                                           "X",
                                           style: TextStyle(
@@ -163,12 +176,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                           width: 100,
                                           height: 50,
                                           decoration: BoxDecoration(
-                                            color: Colors.amber,
-                                            border: Border.all(
-                                              width: 2,
-                                              color: Colors.black,
-                                            ),
-                                          ),
+                                              color: Colors.amber,
+                                              border: Border.all(
+                                                width: 2,
+                                                color: Colors.black,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
                                           child: Text(
                                             order.v1.toString(),
                                             style: const TextStyle(
@@ -184,12 +198,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                         width: 100,
                                         height: 50,
                                         decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          border: Border.all(
-                                            width: 2,
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                            color: Colors.amber,
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.black,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
                                         child: Text(
                                           order.v2.toString(),
                                           style: const TextStyle(
@@ -204,12 +219,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                         width: 100,
                                         height: 50,
                                         decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          border: Border.all(
-                                            width: 2,
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                            color: Colors.amber,
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.black,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
                                         child: Text(
                                           order.v3.toString(),
                                           style: const TextStyle(
@@ -224,12 +240,13 @@ class _MyWidgetState extends State<BarmanPage> {
                                         width: 100,
                                         height: 50,
                                         decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          border: Border.all(
-                                            width: 2,
-                                            color: Colors.black,
-                                          ),
-                                        ),
+                                            color: Colors.amber,
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.black,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
                                         child: Text(
                                           order.v4.toString(),
                                           style: const TextStyle(

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:restaurantapp/models/incomemodel.dart';
 import 'package:restaurantapp/models/ordermodel.dart';
 import 'package:restaurantapp/models/pricemodel.dart';
 import 'package:restaurantapp/models/reciptmodel.dart';
@@ -41,6 +42,18 @@ class TableRepository {
     });
   }
 
+  Stream<List<IncomeModel>> getIncomeStream() {
+    return FirebaseFirestore.instance
+        .collection('Income')
+        .snapshots()
+        .map((querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        return IncomeModel(
+            totalIncome: doc['totalIncome'], id: doc.id, date: doc['date']);
+      }).toList();
+    });
+  }
+
   Stream<List<TotalModel>> getTotalStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
 
@@ -69,24 +82,8 @@ class TableRepository {
         .delete();
   }
 
-  Future<ReciptModel> get({required String number}) async {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in');
-    }
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('orders')
-        .doc(number)
-        .get();
-    return ReciptModel(
-        id: doc.id,
-        v1: doc['Rum'],
-        v2: doc['Tequilla'],
-        v3: doc['Aperol'],
-        v4: doc['Whiskey'],
-        number: doc['tablenumber']);
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   Future<void> addEnd({

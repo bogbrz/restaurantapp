@@ -8,8 +8,11 @@ part 'barman_state.dart';
 
 class BarmanCubit extends Cubit<BarmanState> {
   BarmanCubit(this._tableRepository)
-      : super(
-            const BarmanState(isLoading: false, errorMessage: '', orders: []));
+      : super(const BarmanState(
+          isLoading: false,
+          errorMessage: '',
+          orders: [],
+        ));
 
   final TableRepository _tableRepository;
   StreamSubscription? _streamSubscription;
@@ -26,6 +29,10 @@ class BarmanCubit extends Cubit<BarmanState> {
         );
       },
     );
+  }
+
+  Future<void> signOut() async {
+    await _tableRepository.signOut();
   }
 
   Future<void> removeBarOder(String barOderId) async {
