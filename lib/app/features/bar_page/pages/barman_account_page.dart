@@ -46,12 +46,6 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
               builder: (context, state) {
                 final incomes = state.income;
 
-                for (final income in incomes) {
-                  if (income.date == date) {
-                    totalIncome += income.totalIncome;
-                    newDate = income.date;
-                  }
-                }
                 if (incomes.isEmpty) {
                   return CircularProgressIndicator();
                 }
@@ -59,58 +53,109 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 10),
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                          color: Colors.deepOrangeAccent,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 2,
+                            color: Colors.black,
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            "Incomes: ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          decoration:
-                              BoxDecoration(border: Border.all(width: 2)),
-                          child: SizedBox(
-                            height: 350,
-                            width: 350,
-                            child: ListView(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: Colors.orange,
-                                            border: Border.all(
-                                                color: Colors.black, width: 2)),
-                                        width: 300,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "Date : $newDate",
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 25),
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.orange,
+                            border: Border.all(
+                              width: 2,
+                            ),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              border: Border.all(width: 2),
+                            ),
+                            child: SizedBox(
+                              height: 400,
+                              width: 350,
+                              child: ListView(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        for (final income in incomes) ...[
+                                          Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: Colors.orange,
+                                                  border: Border.all(
+                                                      color: Colors.black,
+                                                      width: 2)),
+                                              width: 300,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      "Date : ${income.date}",
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 25),
+                                                    ),
+                                                    Text(
+                                                      "Day's earnings: ${income.totalIncome} ",
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 25),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                              Text(
-                                                "Day's earnings: $totalIncome ",
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 25),
-                                              ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
+                                        ]
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
