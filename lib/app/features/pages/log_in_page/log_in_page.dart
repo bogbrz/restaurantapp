@@ -18,19 +18,6 @@ class LogInPage extends StatefulWidget {
 class _LogInPageState extends State<LogInPage> {
   var isCreatingAccount = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   emailController.addListener(() {
-  //     // Wywołuje setState za każdym razem, gdy zawartość kontrolera się zmieni
-  //     setState(() {});
-  //   });
-  //   passwordController.addListener(() {
-  //     setState(() {});
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

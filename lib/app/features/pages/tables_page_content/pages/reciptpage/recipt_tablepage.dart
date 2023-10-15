@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/pricemodel_cubit.dart';
-import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
-import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
-import 'package:restaurantapp/app/tablehomepage.dart';
+import 'package:restaurantapp/app/features/pages/tables_page_content/pages/reciptpage/cubit/pricemodel_cubit.dart';
+import 'package:restaurantapp/app/features/pages/tables_page_content/pages/reciptpage/cubit/recipt_page_cubit.dart';
+import 'package:restaurantapp/app/features/pages/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
+
+import 'package:restaurantapp/app/navigators/tables_section_navigator.dart';
 import 'package:restaurantapp/models/pricemodel.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 

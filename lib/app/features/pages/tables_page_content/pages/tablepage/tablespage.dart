@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurantapp/app/features/my_account_page/myaccountpage.dart';
-import 'package:restaurantapp/app/features/tables_page_content/cubit/table_page_cubit.dart';
-import 'package:restaurantapp/app/tablehomepage.dart';
+import 'package:restaurantapp/app/features/pages/my_account_page/myaccountpage.dart';
+import 'package:restaurantapp/app/features/pages/tables_page_content/cubit/table_page_cubit.dart';
+
+import 'package:restaurantapp/app/navigators/tables_section_navigator.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 //a
 

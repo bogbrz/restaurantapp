@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:restaurantapp/app/features/bar_page/pages/barman_account_page.dart';
-import 'package:restaurantapp/app/features/bar_page/pages/barman_page.dart';
+import 'package:restaurantapp/app/features/pages/bar_page/pages/barman_account_page.dart';
+import 'package:restaurantapp/app/features/pages/bar_page/pages/barman_page.dart';
 //a
 
 class BarmanHomePage extends StatefulWidget {
