@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurantapp/app/features/tables_page_content/pages/reciptpage/recipt_tablepage.dart';
+import 'package:restaurantapp/app/features/pages/tables_page_content/pages/reciptpage/recipt_tablepage.dart';
+import 'package:restaurantapp/app/features/pages/tables_page_content/pages/tablecontentpage/tables_screenpage.dart';
 
-import 'package:restaurantapp/app/features/tables_page_content/pages/tablecontentpage/tables_screenpage.dart';
 //a
 
 class TableHomePage extends StatefulWidget {

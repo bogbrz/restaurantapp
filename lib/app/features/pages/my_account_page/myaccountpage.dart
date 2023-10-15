@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:restaurantapp/app/barman_rootpage.dart';
-import 'package:restaurantapp/app/features/log/log_in_page.dart';
-import 'package:restaurantapp/app/features/my_account_page/cubit/myaccount_cubit.dart';
+import 'package:restaurantapp/app/navigators/barman_section_navigator.dart';
+import 'package:restaurantapp/app/features/pages/log_in_page/log_in_page.dart';
+
+import 'package:restaurantapp/app/features/pages/my_account_page/cubit/myaccount_cubit.dart';
 import 'package:restaurantapp/repositories/table_repository.dart';
 //a
 
@@ -161,6 +162,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                         InkWell(
                           onTap: () {
                             context.read<MyaccountCubit>().signOut();
+                            Navigator.of(context).pop();
                           },
                           child: Container(
                             alignment: Alignment.center,

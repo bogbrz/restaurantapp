@@ -45,6 +45,7 @@ class TableRepository {
   Stream<List<IncomeModel>> getIncomeStream() {
     return FirebaseFirestore.instance
         .collection('Income')
+        .orderBy('date', descending: true)
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.docs.map((doc) {

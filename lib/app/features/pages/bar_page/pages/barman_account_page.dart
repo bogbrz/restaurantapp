@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:restaurantapp/app/features/bar_page/cubit/barman_cubit.dart';
-import 'package:restaurantapp/app/features/bar_page/cubit/barmanaccount_cubit.dart';
+import 'package:restaurantapp/app/features/pages/bar_page/cubit/barman_cubit.dart';
+import 'package:restaurantapp/app/features/pages/bar_page/cubit/barmanaccount_cubit.dart';
 
 import 'package:restaurantapp/repositories/table_repository.dart';
 //a
@@ -20,6 +20,7 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
   var date = DateFormat.yMMMd().format(DateTime.now());
   var newDate = '';
   var totalIncome = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,71 +47,74 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
               builder: (context, state) {
                 final incomes = state.income;
 
+                if (incomes.isEmpty) {
+                  return CircularProgressIndicator();
+                }
                 for (final income in incomes) {
                   if (income.date == date) {
                     totalIncome += income.totalIncome;
-                    newDate = income.date;
                   }
-                }
-                if (incomes.isEmpty) {
-                  return CircularProgressIndicator();
                 }
 
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration:
-                              BoxDecoration(border: Border.all(width: 2)),
-                          child: SizedBox(
-                            height: 350,
-                            width: 350,
-                            child: ListView(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 10),
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                          color: Colors.deepOrangeAccent,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 2,
+                            color: Colors.black,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Incomes: ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.orange,
+                                    border: Border.all(
+                                        color: Colors.black, width: 2)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
                                   child: Column(
                                     children: [
-                                      Container(
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: Colors.orange,
-                                            border: Border.all(
-                                                color: Colors.black, width: 2)),
-                                        width: 300,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "Date : $newDate",
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 25),
-                                              ),
-                                              Text(
-                                                "Day's earnings: $totalIncome ",
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 25),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                      Text(
+                                        "Date : $date",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25),
                                       ),
+                                      Text(
+                                        "Day's earnings: $totalIncome ",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25),
+                                      )
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
