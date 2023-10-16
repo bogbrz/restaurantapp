@@ -256,4 +256,53 @@ class TableRepository {
         .doc(id)
         .delete();
   }
+
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  //create account
+
+  Future<User?> createUserWithEmailPass(String email, String password) async {
+    try {
+      UserCredential authResult =
+          await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return authResult.user;
+    } catch (error) {
+      throw Exception(
+        error.toString(),
+      );
+    }
+  }
+
+  //listening for authstate changes
+
+  Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
+
+  //sign in with email and pass
+
+  Future<User?> signInWithEmailPass(String email, String password) async {
+    try {
+      UserCredential authresult = await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return authresult.user;
+    } catch (error) {
+      throw Exception(
+        error.toString(),
+      );
+    }
+  }
+
+  //check sign in
+
+  Future<bool> isSignedIn() async {
+    User? currentUser = firebaseAuth.currentUser;
+    return currentUser != null;
+  }
+
+  Future<User?> getCurrentUser() async {
+    return FirebaseAuth.instance.currentUser;
+  }
 }
