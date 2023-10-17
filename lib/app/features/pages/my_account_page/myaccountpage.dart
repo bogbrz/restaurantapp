@@ -60,16 +60,13 @@ class _MyAccountPageState extends State<MyAccountPage> {
                     height: 15,
                   ),
                   Text(
-                    'You are signed as ${emailController.text}',
+                    'You are signed as: ${emailController.text}',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
-                    height: 15,
-                  ),
-                  const SizedBox(
-                    height: 20,
+                    height: 35,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
