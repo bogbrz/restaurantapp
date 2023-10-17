@@ -48,7 +48,7 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                 final incomes = state.income;
 
                 if (incomes.isEmpty) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
                 for (final income in incomes) {
                   if (income.date == date) {
@@ -63,7 +63,7 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                       padding:
                           const EdgeInsets.only(left: 20, right: 20, top: 10),
                       child: Container(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Colors.deepOrangeAccent,
                           borderRadius: BorderRadius.circular(10),
@@ -73,10 +73,11 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "Incomes: ",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
@@ -96,13 +97,13 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                                         "Date : $date",
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 25),
+                                            fontSize: 20),
                                       ),
                                       Text(
                                         "Day's earnings: $totalIncome ",
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 25),
+                                            fontSize: 20),
                                       )
                                     ],
                                   ),
@@ -113,7 +114,7 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(

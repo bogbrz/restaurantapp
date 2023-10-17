@@ -109,11 +109,6 @@ class _TablesPageState extends State<TablesPage> {
                                     'Table with that number already exists'),
                               );
                             }
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const TablesPage(),
-                              ),
-                            );
                           },
                           child: Container(
                             alignment: Alignment.center,

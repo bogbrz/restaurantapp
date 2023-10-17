@@ -21,13 +21,7 @@ class TablePageCubit extends Cubit<TablePageState> {
       //KONWERTUJEMY DANE Z BAZY NA Table model .map((DOC) {} )  doc oznacza dokumenty z bazy danych a w {co ma zwrócić}
 
       emit(TablePageState(tables: tables, errorMessage: '', isLoading: false));
-    })
-      ..onError((error) {
-        emit(TablePageState(
-            tables: const [],
-            errorMessage: error.toString(),
-            isLoading: false));
-      });
+    });
   }
 
   Future<void> add(String tableNumber) async {
