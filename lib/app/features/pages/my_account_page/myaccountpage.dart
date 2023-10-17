@@ -186,15 +186,6 @@ class _MyAccountPageState extends State<MyAccountPage> {
                       ],
                     ),
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const BarmanHomePage(),
-                          ),
-                        );
-                      },
-                      child: const Text("BarmanPage"))
                 ],
               ),
             );

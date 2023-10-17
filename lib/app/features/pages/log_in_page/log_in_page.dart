@@ -40,7 +40,7 @@ class _LogInPageState extends State<LogInPage> {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -92,8 +92,9 @@ class _LogInPageState extends State<LogInPage> {
                 ),
                 controller: passwordController,
               ),
-              const SizedBox(
-                height: 10,
+              const Text(
+                "to see barmanPage use email: \"barman@example.com\",        password: 123456 .",
+                style: TextStyle(fontSize: 10),
               ),
               InkWell(
                 onTap: () async {
@@ -119,7 +120,7 @@ class _LogInPageState extends State<LogInPage> {
                       ),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text(
                       isCreatingAccount ? "Create Account " : "Log in",
                       style: const TextStyle(
@@ -141,7 +142,7 @@ class _LogInPageState extends State<LogInPage> {
                     },
                     child: const Text(
                       "Doesn't have an Account?",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black, fontSize: 10),
                     )),
               ],
               if (isCreatingAccount == true) ...[
@@ -155,9 +156,9 @@ class _LogInPageState extends State<LogInPage> {
                     },
                     child: const Text(
                       "Already have an account?",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ))
-              ]
+              ],
             ],
           ),
         ),

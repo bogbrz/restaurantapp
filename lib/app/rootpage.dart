@@ -23,7 +23,7 @@ class RootPage extends StatelessWidget {
           if (user == null) {
             return const LogInPage();
           }
-          if (user.email == "barman@wp.pl") {
+          if (user.email == "barman@example.com") {
             return const BarmanHomePage();
           }
 
