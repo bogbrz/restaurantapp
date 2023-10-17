@@ -45,7 +45,7 @@ class MyaccountCubit extends Cubit<MyaccountState> {
   }
 
   Future<void> signOut() async {
-    _tableRepository.signOut();
+    await _tableRepository.signOut();
   }
 
   @override
