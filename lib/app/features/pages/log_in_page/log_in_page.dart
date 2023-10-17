@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurantapp/app/cubit/root_page_cubit.dart';
 //a
 
@@ -23,8 +24,10 @@ class _LogInPageState extends State<LogInPage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.orange,
-          centerTitle: true,
-          title: const Text("Restaurant App")),
+          title: const Text(
+            "Welcome to:",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          )),
       body: BlocListener<RootPageCubit, RootPageState>(
         listener: (context, state) {
           if (state.errorMessage.isNotEmpty) {
@@ -39,8 +42,36 @@ class _LogInPageState extends State<LogInPage> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              Container(
+                width: 300,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.black)),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Row(
+                      children: [
+                        const Image(
+                          image: AssetImage("images/logo2.png"),
+                          width: 60,
+                        ),
+                        Text(
+                          "QuickDrink",
+                          style: GoogleFonts.bebasNeue(
+                              fontWeight: FontWeight.bold, fontSize: 35),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -62,7 +93,7 @@ class _LogInPageState extends State<LogInPage> {
                 controller: passwordController,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               InkWell(
                 onTap: () async {
@@ -79,7 +110,7 @@ class _LogInPageState extends State<LogInPage> {
                 },
                 child: Container(
                   alignment: Alignment.center,
-                  width: 100,
+                  width: isCreatingAccount ? 200 : 100,
                   decoration: BoxDecoration(
                       color: Colors.orange,
                       border: Border.all(

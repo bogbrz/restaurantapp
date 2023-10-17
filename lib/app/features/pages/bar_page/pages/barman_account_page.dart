@@ -48,7 +48,7 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                 final incomes = state.income;
 
                 if (incomes.isEmpty) {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
                 for (final income in incomes) {
                   if (income.date == date) {
