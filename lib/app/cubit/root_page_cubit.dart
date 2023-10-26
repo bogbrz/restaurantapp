@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:meta/meta.dart';
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 
 part 'root_page_state.dart';
 

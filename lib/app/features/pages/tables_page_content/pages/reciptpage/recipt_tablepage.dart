@@ -6,8 +6,10 @@ import 'package:restaurantapp/app/features/pages/tables_page_content/pages/recip
 import 'package:restaurantapp/app/features/pages/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
 
 import 'package:restaurantapp/app/navigators/tables_section_navigator.dart';
+import 'package:restaurantapp/data_source_repositories/remote_data_source/data_source.dart';
+
 import 'package:restaurantapp/models/pricemodel.dart';
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 
 class ReciptTablePage extends StatefulWidget {
   const ReciptTablePage({
@@ -47,14 +49,16 @@ class _ReciptTablePageState extends State<ReciptTablePage> {
         body: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => ReciptPageCubit(TableRepository())..start(),
+              create: (context) =>
+                  ReciptPageCubit(TableRepository(DataSource()))..start(),
             ),
             BlocProvider(
               create: (context) =>
-                  TablecontentCubit(TableRepository())..start(),
+                  TablecontentCubit(TableRepository(DataSource()))..start(),
             ),
             BlocProvider(
-              create: (context) => PricemodelCubit(TableRepository())..start(),
+              create: (context) =>
+                  PricemodelCubit(TableRepository(DataSource()))..start(),
             ),
           ],
           child: BlocBuilder<PricemodelCubit, PricemodelState>(

@@ -4,7 +4,9 @@ import 'package:restaurantapp/app/features/pages/my_account_page/myaccountpage.d
 import 'package:restaurantapp/app/features/pages/tables_page_content/cubit/table_page_cubit.dart';
 
 import 'package:restaurantapp/app/navigators/tables_section_navigator.dart';
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/remote_data_source/data_source.dart';
+
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 //a
 
 class TablesPage extends StatefulWidget {
@@ -58,7 +60,8 @@ class _TablesPageState extends State<TablesPage> {
         ],
       ),
       body: BlocProvider(
-        create: (context) => TablePageCubit(TableRepository())..start(),
+        create: (context) =>
+            TablePageCubit(TableRepository(DataSource()))..start(),
         child: BlocListener<TablePageCubit, TablePageState>(
           listener: (context, state) {
             if (state.isLoading) {
