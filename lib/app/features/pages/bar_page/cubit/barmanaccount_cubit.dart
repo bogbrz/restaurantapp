@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:restaurantapp/models/incomemodel.dart';
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 
 part 'barmanaccount_state.dart';
 
