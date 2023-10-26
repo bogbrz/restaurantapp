@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:restaurantapp/app/features/pages/log_in_page/log_in_page.dart';
 import 'package:restaurantapp/app/features/pages/my_account_page/cubit/myaccount_cubit.dart';
-import 'package:restaurantapp/app/navigators/barman_section_navigator.dart';
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/remote_data_source/data_source.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 //a
 
 class MyAccountPage extends StatefulWidget {
@@ -32,7 +32,8 @@ class _MyAccountPageState extends State<MyAccountPage> {
         backgroundColor: Colors.orange,
       ),
       body: BlocProvider(
-        create: (context) => MyaccountCubit(TableRepository())..start(),
+        create: (context) =>
+            MyaccountCubit(TableRepository(DataSource()))..start(),
         child: BlocBuilder<MyaccountCubit, MyaccountState>(
           builder: (context, state) {
             final totals = state.totals;

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurantapp/app/features/pages/bar_page/cubit/barman_cubit.dart';
 import 'package:restaurantapp/app/features/pages/tables_page_content/pages/tablecontentpage/cubit/tablecontent_cubit.dart';
+import 'package:restaurantapp/data_source_repositories/remote_data_source/data_source.dart';
 
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 
 class BarmanPage extends StatefulWidget {
   const BarmanPage({super.key});
@@ -26,10 +27,12 @@ class _MyWidgetState extends State<BarmanPage> {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => TablecontentCubit(TableRepository())..start(),
+            create: (context) =>
+                TablecontentCubit(TableRepository(DataSource()))..start(),
           ),
           BlocProvider(
-            create: (context) => BarmanCubit(TableRepository())..start(),
+            create: (context) =>
+                BarmanCubit(TableRepository(DataSource()))..start(),
           ),
         ],
         child: BlocBuilder<BarmanCubit, BarmanState>(

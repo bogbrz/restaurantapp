@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:restaurantapp/app/features/pages/bar_page/cubit/barman_cubit.dart';
 import 'package:restaurantapp/app/features/pages/bar_page/cubit/barmanaccount_cubit.dart';
 import 'package:restaurantapp/app/features/pages/log_in_page/log_in_page.dart';
+import 'package:restaurantapp/data_source_repositories/remote_data_source/data_source.dart';
 
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 //a
 
 class BarmanAccountPage extends StatefulWidget {
@@ -36,10 +37,12 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => BarmanCubit(TableRepository())..start(),
+            create: (context) =>
+                BarmanCubit(TableRepository(DataSource()))..start(),
           ),
           BlocProvider(
-            create: (context) => BarmanAccountCubit(TableRepository())..start(),
+            create: (context) =>
+                BarmanAccountCubit(TableRepository(DataSource()))..start(),
           ),
         ],
         child: BlocBuilder<BarmanCubit, BarmanState>(
@@ -81,7 +84,7 @@ class _MyAccountPageState extends State<BarmanAccountPage> {
                           fontWeight: FontWeight.bold, fontSize: 20),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
                     Padding(

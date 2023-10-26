@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:restaurantapp/models/totalmodel.dart';
-import 'package:restaurantapp/repositories/table_repository.dart';
+import 'package:restaurantapp/data_source_repositories/repositories/table_repository.dart';
 
 part 'myaccount_state.dart';
 
